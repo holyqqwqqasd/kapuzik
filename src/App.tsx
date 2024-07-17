@@ -1,9 +1,9 @@
-import Test from './components/Test.tsx'
+import AudioCard from './components/audio/AudioCard.tsx'
 
 export default function () {
   return (
     <>
-      <Test />
+      <AudioCard />
     </>
   )
 }
