@@ -1,0 +1,8 @@
+.audio-container {
+    display: flex;
+    background-color: brown;
+}
+
+.audio-container .audio-button {
+    cursor: pointer;
+}
