@@ -1,0 +1,24 @@
+.audio-progress-bar {
+    display: grid;
+    border: 1px solid #333;
+    width: 100%;
+    height: 1vh;
+    cursor: pointer;
+}
+
+.audio-progress-bar .fill {
+    grid-column: 1;
+    grid-row: 1;
+    height: 1vh;
+    background-color: blueviolet;
+}
+
+.audio-progress-bar .seeker {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    margin-left: -0.5vh;
+    width: 1vh;
+    height: 1vh;
+    background-color: greenyellow;
+}

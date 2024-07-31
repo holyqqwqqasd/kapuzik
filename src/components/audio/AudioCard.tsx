@@ -1,6 +1,7 @@
-import { useRef, useState, useTransition } from 'react'
+import { useRef, useState } from 'react'
 import Pause from '../images/pause.tsx'
 import Play from '../images/play.tsx'
+import ProgressBar from './ProgressBar.tsx'
 import './AudioCard.css'
 
 export default function () {
@@ -30,12 +31,11 @@ export default function () {
             <span className="audio-button">
                 {middleButton}
             </span>
-            <input
-                type="range"
-                min={0} max={duration}
-                value={position}
-                onChange={e => {
-                    audioRef.current!.currentTime = e.currentTarget.valueAsNumber
+            <ProgressBar
+                position={position}
+                duration={duration}
+                selected={x => {
+                    audioRef.current!.currentTime = duration * x
                 }}
             />
             <audio
@@ -55,9 +55,6 @@ export default function () {
 
                     setPlaying(true)
                     setDuration(audio.duration)
-                }}
-                onSeeked={e => {
-                    const audio = e.currentTarget
                 }}
                 src="http://music.kapehh.net:8787/Rammstein/Auslander.flac"
             />
