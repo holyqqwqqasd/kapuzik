@@ -24,6 +24,7 @@ export default function ({ position, duration, selected }: State) {
                     selected(percent)
                 }
             }} >
+            <div className="background" />
             <div
                 className="fill"
                 style={{ width: `${percent}%` }} />

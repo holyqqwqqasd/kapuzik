@@ -1,8 +1,27 @@
 .audio-container {
-    display: flex;
-    background-color: brown;
+    display: grid;
+    background-color: #333;
+    padding: 5px 0;
 }
 
 .audio-container .audio-button {
     cursor: pointer;
+}
+
+.audio-container .audio-progress {
+    grid-column: 4 / 8;
+    grid-row: 1;
+}
+
+.audio-container .audio-divider {
+    height: 5px;
+    text-align: center;
+    grid-column: 1 / 11;
+    grid-row: 2;
+}
+
+.audio-container .audio-buttons {
+    text-align: center;
+    grid-column: 1 / 11;
+    grid-row: 3;
 }

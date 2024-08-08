@@ -28,16 +28,19 @@ export default function () {
 
     return (
         <div className="audio-container">
-            <span className="audio-button">
+            <span className="audio-progress">
+                <ProgressBar
+                    position={position}
+                    duration={duration}
+                    selected={x => {
+                        audioRef.current!.currentTime = duration * x
+                    }}
+                />
+            </span>
+            <div className="audio-divider" />
+            <span className="audio-button audio-buttons">
                 {middleButton}
             </span>
-            <ProgressBar
-                position={position}
-                duration={duration}
-                selected={x => {
-                    audioRef.current!.currentTime = duration * x
-                }}
-            />
             <audio
                 ref={audioRef}
                 onTimeUpdate={e => {
