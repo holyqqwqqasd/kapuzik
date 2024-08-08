@@ -3,7 +3,7 @@ import './ProgressBar.css'
 interface State {
     position: number
     duration: number
-    selected?: (current: number) => void | undefined
+    selected?: (current: number) => void
 }
 
 export default function ({ position, duration, selected }: State) {
@@ -15,11 +15,11 @@ export default function ({ position, duration, selected }: State) {
         <div
             className="audio-progress-bar"
             onMouseDown={e => {
-                const target = e.currentTarget;
-                const rect = target.getBoundingClientRect();
+                const target = e.currentTarget
+                const rect = target.getBoundingClientRect()
 
                 if (selected) {
-                    const x = e.clientX - rect.left;
+                    const x = e.clientX - rect.left
                     const percent = x / rect.width
                     selected(percent)
                 }
