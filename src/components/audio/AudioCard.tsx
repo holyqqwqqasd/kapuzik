@@ -4,7 +4,12 @@ import Play from '../images/play.tsx'
 import ProgressBar from './ProgressBar.tsx'
 import './AudioCard.css'
 
-export default function () {
+interface State {
+    currentUrl?: string
+    onNextTrack?: () => void
+}
+
+export default function (props: State) {
     const [playing, setPlaying] = useState(false)
     const [position, setPosition] = useState(0)
     const [duration, setDuration] = useState(0)
@@ -43,14 +48,13 @@ export default function () {
             </span>
             <audio
                 ref={audioRef}
+                autoPlay={true}
                 onTimeUpdate={e => {
                     const audio = e.currentTarget
 
                     setPosition(audio.currentTime)
                 }}
-                onPause={e => {
-                    const audio = e.currentTarget
-
+                onPause={_ => {
                     setPlaying(false)
                 }}
                 onPlay={e => {
@@ -59,7 +63,12 @@ export default function () {
                     setPlaying(true)
                     setDuration(audio.duration)
                 }}
-                src="http://music.kapehh.net:8787/Rammstein/Auslander.flac"
+                onEnded={_ => {
+                    if (props.onNextTrack) {
+                        props.onNextTrack()
+                    }
+                }}
+                src={props.currentUrl}
             />
         </div>
     )

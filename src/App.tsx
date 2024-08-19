@@ -1,9 +1,9 @@
-import AudioCard from './components/audio/AudioCard.tsx'
+import Playlist from './components/audio/Playlist.tsx'
 
 export default function () {
   return (
     <>
-      <AudioCard />
+      <Playlist />
     </>
   )
 }
