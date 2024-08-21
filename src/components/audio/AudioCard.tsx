@@ -27,7 +27,9 @@ export default function (props: State) {
             size={35}
             color="white"
             onClick={() => {
-                audioRef.current!.play()
+                if (props.currentUrl) {
+                    audioRef.current!.play()
+                }
             }}
         />
 
@@ -57,10 +59,12 @@ export default function (props: State) {
                 onPause={_ => {
                     setPlaying(false)
                 }}
-                onPlay={e => {
+                onPlay={_ => {
+                    setPlaying(true)
+                }}
+                onLoadedData={e => {
                     const audio = e.currentTarget
 
-                    setPlaying(true)
                     setDuration(audio.duration)
                 }}
                 onEnded={_ => {

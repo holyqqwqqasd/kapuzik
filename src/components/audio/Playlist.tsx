@@ -1,27 +1,32 @@
-import { useState } from 'react'
 import AudioCard from './AudioCard.tsx'
 
-const musics = [
-    "http://music.kapehh.net:8787/Linkin%20Park/2023%20-%20Meteora%2020th/01%20-%20Lost.flac",
-    "http://music.kapehh.net:8787/Linkin%20Park/2023%20-%20Meteora%2020th/02%20-%20Fighting%20Myself.flac"
-]
+interface State {
+    tracks: string[]
+    position: number
+    onPositionChanged: (selected: number) => void
+}
 
-export default function () {
-    const [position, setPosition] = useState(0)
+export default function (props: State) {
+    const currentUrl = props.position >= 0 ? props.tracks[props.position] : undefined
+    const list = props.tracks.map((x, i) =>
+        <li key={i}><button onClick={() => props.onPositionChanged(i)}>Play</button> {x}</li>
+    )
 
     return (
         <>
-            <button onClick={() => setPosition(0)}>1</button>
-            <button onClick={() => setPosition(1)}>2</button>
+            <ul>
+                {list}
+            </ul>
             <AudioCard
-                currentUrl={position >= 0 ? musics[position] : undefined}
+                key={currentUrl}
+                currentUrl={currentUrl}
                 onNextTrack={() => {
-                    const nextPosition = position + 1
+                    const nextPosition = props.position + 1
 
-                    if (nextPosition < musics.length) {
-                        setPosition(nextPosition)
+                    if (nextPosition < props.tracks.length) {
+                        props.onPositionChanged(nextPosition)
                     } else {
-                        setPosition(-1)
+                        props.onPositionChanged(-1)
                     }
                 }}
             />
