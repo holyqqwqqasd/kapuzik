@@ -1,15 +1,15 @@
 import AudioCard from './AudioCard.tsx'
 
 interface State {
-    tracks: string[]
+    tracks: Track[]
     position: number
     onPositionChanged: (selected: number) => void
 }
 
 export default function (props: State) {
-    const currentUrl = props.position >= 0 ? props.tracks[props.position] : undefined
+    const currentTrack = props.position >= 0 ? props.tracks[props.position] : undefined
     const list = props.tracks.map((x, i) =>
-        <li key={i}><button onClick={() => props.onPositionChanged(i)}>Play</button> {x}</li>
+        <li key={i}><button onClick={() => props.onPositionChanged(i)}>Play</button> {x.text}</li>
     )
 
     return (
@@ -18,8 +18,8 @@ export default function (props: State) {
                 {list}
             </ul>
             <AudioCard
-                key={currentUrl}
-                currentUrl={currentUrl}
+                key={currentTrack?.id}
+                currentTrack={currentTrack}
                 onNextTrack={() => {
                     const nextPosition = props.position + 1
 

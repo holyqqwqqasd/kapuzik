@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar.tsx'
 import './AudioCard.css'
 
 interface State {
-    currentUrl?: string
+    currentTrack?: Track
     onNextTrack?: () => void
 }
 
@@ -27,7 +27,7 @@ export default function (props: State) {
             size={35}
             color="white"
             onClick={() => {
-                if (props.currentUrl) {
+                if (props.currentTrack) {
                     audioRef.current!.play()
                 }
             }}
@@ -72,7 +72,7 @@ export default function (props: State) {
                         props.onNextTrack()
                     }
                 }}
-                src={props.currentUrl}
+                src={props.currentTrack?.url}
             />
         </div>
     )
