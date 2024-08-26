@@ -1,15 +1,15 @@
+import { useState } from 'react'
 import AudioCard from './AudioCard.tsx'
 
 interface State {
     tracks: Track[]
-    position: number
-    onPositionChanged: (selected: number) => void
 }
 
 export default function (props: State) {
-    const currentTrack = props.position >= 0 ? props.tracks[props.position] : undefined
+    const [position, setPosition] = useState(-1)
+    const currentTrack = position >= 0 ? props.tracks[position] : undefined
     const list = props.tracks.map((x, i) =>
-        <li key={i}><button onClick={() => props.onPositionChanged(i)}>Play</button> {x.text}</li>
+        <li key={i}><button onClick={() => setPosition(i)}>Play</button> {x.text}</li>
     )
 
     return (
@@ -21,12 +21,12 @@ export default function (props: State) {
                 key={currentTrack?.id}
                 currentTrack={currentTrack}
                 onNextTrack={() => {
-                    const nextPosition = props.position + 1
+                    const nextPosition = position + 1
 
                     if (nextPosition < props.tracks.length) {
-                        props.onPositionChanged(nextPosition)
+                        setPosition(nextPosition)
                     } else {
-                        props.onPositionChanged(-1)
+                        setPosition(-1)
                     }
                 }}
             />

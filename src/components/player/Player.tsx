@@ -1,20 +1,16 @@
-import { useState } from 'react'
-import Queuelist from '../audio/Queuelist.tsx'
+import QueueComponent from '../audio/QueueComponent.tsx'
 
 interface State {
     playlist: Playlist
 }
 
 export default function ({ playlist }: State) {
-  const [position, setPosition] = useState(-1)
 
   return (
     <>
-      <Queuelist
+      <QueueComponent
         key={playlist.id}
-        position={position}
         tracks={playlist.tracks}
-        onPositionChanged={pos => setPosition(pos)}
       />
     </>
   )

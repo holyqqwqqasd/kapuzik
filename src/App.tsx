@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import Player from './components/player/Player'
 
-const playlist: Playlist = {
+const defaultPlayer: Playlist = {
   id: 1,
   tracks: [
     {
@@ -32,9 +33,17 @@ const playlist: Playlist = {
 }
 
 export default function () {
+  const [playlist, setPlaylist] = useState(defaultPlayer)
 
   return (
     <>
+      <button onClick={() => {
+        const newPlaylist: Playlist = {
+          id: playlist.id,
+          tracks: [...playlist.tracks, { id: 111, text: "F", url: "G" }]
+        }
+        setPlaylist(newPlaylist)
+      }}>TEST</button>
       <Player playlist={playlist} />
     </>
   )
