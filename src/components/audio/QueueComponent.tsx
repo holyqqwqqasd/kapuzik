@@ -9,7 +9,7 @@ export default function (props: State) {
     const [position, setPosition] = useState(-1)
     const currentTrack = position >= 0 ? props.tracks[position] : undefined
     const list = props.tracks.map((x, i) =>
-        <li key={i}><button onClick={() => setPosition(i)}>Play</button> {x.text}</li>
+        <li key={i}><button onClick={() => setPosition(i)}>Play</button> {x.name}</li>
     )
 
     return (
