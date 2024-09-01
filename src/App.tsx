@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import QueueComponent from './components/audio/QueueComponent'
 import Player from './components/player/Player'
 
 const defaultPlayer: Playlist = {
@@ -33,18 +34,9 @@ const defaultPlayer: Playlist = {
 }
 
 export default function () {
-  const [playlist, setPlaylist] = useState(defaultPlayer)
-
   return (
     <>
-      <button onClick={() => {
-        const newPlaylist: Playlist = {
-          id: playlist.id,
-          tracks: [...playlist.tracks, { id: 111, text: "F", url: "G" }]
-        }
-        setPlaylist(newPlaylist)
-      }}>TEST</button>
-      <Player playlist={playlist} />
+      <Player playlist={defaultPlayer} />
     </>
   )
 }
