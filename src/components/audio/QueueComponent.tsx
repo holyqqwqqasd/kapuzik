@@ -6,10 +6,13 @@ interface State {
 }
 
 export default function (props: State) {
-    const [position, setPosition] = useState(-1)
+    const [position, setPosition] = useState(0)
     const currentTrack = position >= 0 ? props.tracks[position] : undefined
     const list = props.tracks.map((x, i) =>
-        <li key={i}><button onClick={() => setPosition(i)}>Play</button> {x.name}</li>
+        <li key={i}>
+            <button onClick={() => setPosition(i)}>Play</button>
+            <span style={{ color: i == position ? "red" : "black" }}>{x.name}</span>
+        </li>
     )
 
     return (

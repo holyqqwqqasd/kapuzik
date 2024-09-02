@@ -7,22 +7,23 @@ interface State {
 
 export default function ({ playlists }: State) {
   const [queue, setQueue] = useState<QueueTracks | undefined>()
-
+  const prevQueue: QueueTracks = queue ?? { uniqId: 0, tracks: [] }
   const selectPlaylistComponent =
-    <select onChange={e => {
-      const id = parseInt(e.target.value)
-      const playlist = playlists.find(x => x.id == id)
-
-      if (playlist) {
-        const prevId = queue?.uniqId ?? 0
-        setQueue({
-          uniqId: prevId + 1,
-          tracks: playlist?.tracks
-        })
-      }
-    }}>
-      {playlists.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}
-    </select>
+    <>
+      {playlists.map(x =>
+        <div key={x.id}>
+          {x.name}
+          <button onClick={() => setQueue({
+            uniqId: prevQueue.uniqId + 1,
+            tracks: x.tracks
+          })}>Play</button>
+          <button onClick={() => setQueue({
+            uniqId: prevQueue.uniqId,
+            tracks: [...prevQueue.tracks, ...x.tracks]
+          })}>Add to queue</button>
+        </div>
+      )}
+    </>
 
   if (queue) {
     return (
@@ -38,7 +39,6 @@ export default function ({ playlists }: State) {
     return (
       <>
         {selectPlaylistComponent}
-        PLZ SELECT PLAYLISTO
       </>
     )
   }
