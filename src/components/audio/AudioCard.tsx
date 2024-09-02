@@ -25,6 +25,10 @@ export default function (props: State) {
     const [duration, setDuration] = useState(0)
     const audioRef = useRef<HTMLAudioElement>(null)
 
+    if (!props.currentTrack) {
+        return <></>
+    }
+
     const middleButton = playing
         ? <Pause
             size={35}
@@ -47,8 +51,8 @@ export default function (props: State) {
         <div className="audio-container">
             <div className="audio-info">{props.currentTrack?.name}</div>
             <div className="audio-controls">
-                <div className="audio-current-time">{fromNumberToTime(position)}</div>
-                <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
+            <div className="audio-current-time">{fromNumberToTime(position)}</div>
+            <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
                 <div className="audio-progress">
                     <ProgressBar
                         position={position}
@@ -58,8 +62,8 @@ export default function (props: State) {
                         }}
                     />
                 </div>
-                <div className="audio-button audio-buttons">
-                    {middleButton}
+                <div className="audio-buttons">
+                    <span className="audio-button">{middleButton}</span>
                 </div>
                 <audio
                     ref={audioRef}

@@ -11,15 +11,13 @@ export default function (props: State) {
     const list = props.tracks.map((x, i) =>
         <li key={i}>
             <button onClick={() => setPosition(i)}>Play</button>
+            <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
             <span style={{ color: i == position ? "red" : "black" }}>{x.name}</span>
         </li>
     )
 
     return (
         <>
-            <ul>
-                {list}
-            </ul>
             <AudioCard
                 key={currentTrack?.id}
                 currentTrack={currentTrack}
@@ -33,6 +31,9 @@ export default function (props: State) {
                     }
                 }}
             />
+            <ul>
+                {list}
+            </ul>
         </>
     )
 }
