@@ -1,1 +1,1 @@
-find . -type f -printf "%h|%p\n"
+# Standalone Music Player

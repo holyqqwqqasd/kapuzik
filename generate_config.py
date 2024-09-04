@@ -1,5 +1,6 @@
 import sys
 
+# find . -type f -printf "%h|%p\n"
 f = open(sys.argv[1], "r")
 
 uniq_id = 0
