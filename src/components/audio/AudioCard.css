@@ -35,6 +35,7 @@
     padding-right: 10px;
     grid-column: 1;
     grid-row: 1;
+    align-content: center;
 }
 
 .audio-container .audio-duration-time {
@@ -42,6 +43,7 @@
     padding-left: 10px;
     grid-column: 3;
     grid-row: 1;
+    align-content: center;
 }
 
 .audio-container .audio-progress {
