@@ -5,7 +5,7 @@ import ProgressBar from './ProgressBar.tsx'
 import './AudioCard.css'
 
 interface State {
-    currentTrack?: Track
+    currentTrack: Track
     onNextTrack?: () => void
 }
 
@@ -24,10 +24,6 @@ export default function (props: State) {
     const [position, setPosition] = useState(0)
     const [duration, setDuration] = useState(0)
     const audioRef = useRef<HTMLAudioElement>(null)
-
-    if (!props.currentTrack) {
-        return <></>
-    }
 
     const middleButton = playing
         ? <Pause
@@ -48,7 +44,7 @@ export default function (props: State) {
         />
 
     return (
-        <div className="audio-container">
+        <div className="audio-container footer">
             <div className="audio-info">{props.currentTrack?.name}</div>
             <div className="audio-controls">
             <div className="audio-current-time">{fromNumberToTime(position)}</div>
@@ -63,6 +59,7 @@ export default function (props: State) {
                     />
                 </div>
                 <div className="audio-buttons">
+                    <span className="audio-button">{middleButton}</span>
                     <span className="audio-button">{middleButton}</span>
                 </div>
                 <audio
