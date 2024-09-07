@@ -55,7 +55,7 @@ export default function ({
                     <ProgressBar
                         position={progress}
                         duration={duration}
-                        selected={onProgressSeeked}
+                        selected={x => onProgressSeeked(duration * x)}
                     />
                 </div>
                 <div className="audio-buttons">

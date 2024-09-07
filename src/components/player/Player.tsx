@@ -45,7 +45,7 @@ export default function () {
     )
   const onPlay = () => { audioRef.current!.play() }
   const onPause = () => { audioRef.current!.pause() }
-  const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = duration * x }
+  const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
 
   return (
     <>
