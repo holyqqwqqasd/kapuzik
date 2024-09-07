@@ -79,8 +79,9 @@ export default function () {
           autoPlay={true}
           onTimeUpdate={e => {
             const audio = e.currentTarget
+            const floored = Math.floor(audio.currentTime)
 
-            setProgress(audio.currentTime)
+            setProgress(floored)
           }}
           onPause={_ => {
             setPlaying(false)
