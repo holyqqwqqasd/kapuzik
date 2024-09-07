@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
 import test_config from '../../models/test_config.ts'
@@ -6,10 +6,20 @@ import test_config from '../../models/test_config.ts'
 type ActiveItem = "playlists" | "queue"
 
 export default function () {
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  // main part
   const [activeTab, setActiveTab] = useState<ActiveItem>("playlists")
+
+  // queue track part
   const [tracks, setTracks] = useState<Track[]>([])
   const [position, setPosition] = useState(-1)
   const currentTrack = position >= 0 ? tracks[position] : null
+
+  // audio card part
+  const [progress, setProgress] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [playing, setPlaying] = useState(false)
 
   const playList =
     test_config.map(x =>
@@ -33,24 +43,57 @@ export default function () {
         <span style={{ color: i == position ? "red" : "black" }}>{x.name}</span>
       </li>
     )
+  const onPlay = () => { audioRef.current!.play() }
+  const onPause = () => { audioRef.current!.pause() }
+  const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = duration * x }
 
   return (
     <>
       <button onClick={() => setActiveTab("playlists")}>Playlists</button>
       <button onClick={() => setActiveTab("queue")}>Queue</button>
 
-      {activeTab == "playlists" ? playList : null}
+      <hr />
 
-      <div className="main-player queue-list">
-        {activeTab == "queue" ? queueList : null}
-      </div>
+      {activeTab == "playlists" ? playList : null}
+      {activeTab == "queue"
+        ? <div className="main-player queue-list">
+          {queueList}
+          {currentTrack == null
+            ? null
+            : <AudioCard
+              currentTrack={currentTrack}
+              progress={progress}
+              playing={playing}
+              duration={duration}
+              onPlay={onPlay}
+              onPause={onPause}
+              onProgressSeeked={onProgressSeeked}
+            />}
+        </div>
+        : null}
 
       {currentTrack == null
         ? null
-        : <AudioCard
-          key={currentTrack.id}
-          currentTrack={currentTrack}
-          onNextTrack={() => {
+        : <audio
+          ref={audioRef}
+          autoPlay={true}
+          onTimeUpdate={e => {
+            const audio = e.currentTarget
+
+            setProgress(audio.currentTime)
+          }}
+          onPause={_ => {
+            setPlaying(false)
+          }}
+          onPlay={_ => {
+            setPlaying(true)
+          }}
+          onLoadedData={e => {
+            const audio = e.currentTarget
+
+            setDuration(audio.duration)
+          }}
+          onEnded={_ => {
             const nextPosition = position + 1
 
             if (nextPosition < tracks.length) {
@@ -59,6 +102,7 @@ export default function () {
               setPosition(-1)
             }
           }}
+          src={currentTrack.url}
         />}
     </>
   )

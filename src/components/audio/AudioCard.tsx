@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react'
 import Pause from '../images/pause.tsx'
 import Play from '../images/play.tsx'
 import ProgressBar from './ProgressBar.tsx'
@@ -6,7 +5,12 @@ import './AudioCard.css'
 
 interface State {
     currentTrack: Track
-    onNextTrack?: () => void
+    playing: boolean
+    progress: number
+    duration: number
+    onPlay: () => void
+    onPause: () => void
+    onProgressSeeked: (x: number) => void
 }
 
 function fromNumberToTime(x: number) {
@@ -19,75 +23,45 @@ function fromNumberToTime(x: number) {
     return `${m}:${s}`;
 }
 
-export default function (props: State) {
-    const [playing, setPlaying] = useState(false)
-    const [position, setPosition] = useState(0)
-    const [duration, setDuration] = useState(0)
-    const audioRef = useRef<HTMLAudioElement>(null)
+export default function ({
+    currentTrack,
+    playing,
+    progress,
+    duration,
+    onPause,
+    onPlay,
+    onProgressSeeked
+}: State) {
 
     const middleButton = playing
         ? <Pause
             size={35}
             color="white"
-            onClick={() => {
-                audioRef.current!.pause()
-            }}
+            onClick={onPause}
         />
         : <Play
             size={35}
             color="white"
-            onClick={() => {
-                if (props.currentTrack) {
-                    audioRef.current!.play()
-                }
-            }}
+            onClick={onPlay}
         />
 
     return (
         <div className="audio-container footer">
-            <div className="audio-info">{props.currentTrack?.name}</div>
+            <div className="audio-info">{currentTrack?.name}</div>
             <div className="audio-controls">
-            <div className="audio-current-time">{fromNumberToTime(position)}</div>
-            <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
+                <div className="audio-current-time">{fromNumberToTime(progress)}</div>
+                <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
                 <div className="audio-progress">
                     <ProgressBar
-                        position={position}
+                        position={progress}
                         duration={duration}
-                        selected={x => {
-                            audioRef.current!.currentTime = duration * x
-                        }}
+                        selected={onProgressSeeked}
                     />
                 </div>
                 <div className="audio-buttons">
                     <span className="audio-button">{middleButton}</span>
                     <span className="audio-button">{middleButton}</span>
                 </div>
-                <audio
-                    ref={audioRef}
-                    autoPlay={true}
-                    onTimeUpdate={e => {
-                        const audio = e.currentTarget
-
-                        setPosition(audio.currentTime)
-                    }}
-                    onPause={_ => {
-                        setPlaying(false)
-                    }}
-                    onPlay={_ => {
-                        setPlaying(true)
-                    }}
-                    onLoadedData={e => {
-                        const audio = e.currentTarget
-
-                        setDuration(audio.duration)
-                    }}
-                    onEnded={_ => {
-                        if (props.onNextTrack) {
-                            props.onNextTrack()
-                        }
-                    }}
-                    src={props.currentTrack?.url}
-                />
             </div>
         </div>
     )
