@@ -49,15 +49,15 @@ export default function () {
 
   return (
     <>
-      <button onClick={() => setActiveTab("playlists")}>Playlists</button>
-      <button onClick={() => setActiveTab("queue")}>Queue</button>
-
-      <hr />
-
-      {activeTab == "playlists" ? playList : null}
-      {activeTab == "queue"
-        ? <div className="main-player queue-list">
-          {queueList}
+      <div className="main-container">
+        <div className="content">
+          <button onClick={() => setActiveTab("playlists")}>Playlists</button>
+          <button onClick={() => setActiveTab("queue")}>Queue</button>
+          <hr />
+          {activeTab == "playlists" ? playList : null}
+          {activeTab == "queue" ? queueList : null}
+        </div>
+        <div className="controls">
           {currentTrack == null
             ? null
             : <AudioCard
@@ -70,41 +70,41 @@ export default function () {
               onProgressSeeked={onProgressSeeked}
             />}
         </div>
-        : null}
 
-      {currentTrack == null
-        ? null
-        : <audio
-          ref={audioRef}
-          autoPlay={true}
-          onTimeUpdate={e => {
-            const audio = e.currentTarget
-            const floored = Math.floor(audio.currentTime)
+        {currentTrack == null
+          ? null
+          : <audio
+            ref={audioRef}
+            autoPlay={true}
+            onTimeUpdate={e => {
+              const audio = e.currentTarget
+              const floored = Math.floor(audio.currentTime)
 
-            setProgress(floored)
-          }}
-          onPause={_ => {
-            setPlaying(false)
-          }}
-          onPlay={_ => {
-            setPlaying(true)
-          }}
-          onLoadedData={e => {
-            const audio = e.currentTarget
+              setProgress(floored)
+            }}
+            onPause={_ => {
+              setPlaying(false)
+            }}
+            onPlay={_ => {
+              setPlaying(true)
+            }}
+            onLoadedData={e => {
+              const audio = e.currentTarget
 
-            setDuration(audio.duration)
-          }}
-          onEnded={_ => {
-            const nextPosition = position + 1
+              setDuration(audio.duration)
+            }}
+            onEnded={_ => {
+              const nextPosition = position + 1
 
-            if (nextPosition < tracks.length) {
-              setPosition(nextPosition)
-            } else {
-              setPosition(-1)
-            }
-          }}
-          src={currentTrack.url}
-        />}
+              if (nextPosition < tracks.length) {
+                setPosition(nextPosition)
+              } else {
+                setPosition(-1)
+              }
+            }}
+            src={currentTrack.url}
+          />}
+      </div>
     </>
   )
 }

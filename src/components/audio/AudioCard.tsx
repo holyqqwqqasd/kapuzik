@@ -46,7 +46,7 @@ export default function ({
         />
 
     return (
-        <div className="audio-container footer">
+        <div className="audio-container">
             <div className="audio-info">{currentTrack?.name}</div>
             <div className="audio-controls">
                 <div className="audio-current-time">{fromNumberToTime(progress)}</div>
