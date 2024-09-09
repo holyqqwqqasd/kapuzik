@@ -1,11 +1,11 @@
-.audio-progress-bar {
+.audio-progress-bar-component {
     display: grid;
     width: 100%;
     height: 1vh;
     cursor: pointer;
 }
 
-.audio-progress-bar .background {
+.audio-progress-bar-component .background {
     grid-column: 1;
     grid-row: 1;
     margin: 0.2vh 0;
@@ -13,7 +13,7 @@
     border-radius: 1vh;
 }
 
-.audio-progress-bar .fill {
+.audio-progress-bar-component .fill {
     grid-column: 1;
     grid-row: 1;
     margin: 0.1vh 0;
@@ -21,7 +21,7 @@
     border-radius: 1vh;
 }
 
-.audio-progress-bar .seeker {
+.audio-progress-bar-component .seeker {
     grid-column: 1;
     grid-row: 1;
     position: relative;

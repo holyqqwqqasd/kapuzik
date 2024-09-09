@@ -13,7 +13,7 @@ export default function ({ position, duration, selected }: State) {
 
     return (
         <div
-            className="audio-progress-bar"
+            className="audio-progress-bar-component"
             onMouseDown={e => {
                 const target = e.currentTarget
                 const rect = target.getBoundingClientRect()

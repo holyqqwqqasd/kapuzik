@@ -1,8 +1,8 @@
 .audio-container {
-    display: grid;
+    display: flex;
     background-color: #333;
     color: whitesmoke;
-    padding: 5px 0;
+    padding: 1vh 1vw;
 }
 
 .audio-container .audio-button {
@@ -10,41 +10,36 @@
 }
 
 .audio-container .audio-info {
-    text-align: center;
-    grid-column: 1;
-    grid-row: 1;
+    text-align: left;
+    max-width: 30vw;
 }
 
 .audio-container .audio-controls {
-    display: grid;
-    grid-column: 1;
-    grid-row: 2;
+    flex-grow: 1;
+}
+
+.audio-container .audio-buttons {
+    text-align: center;
+}
+
+.audio-container .audio-progress {
+    align-content: center;
+    display: flex;
 }
 
 .audio-container .audio-current-time {
     text-align: right;
     padding-right: 10px;
-    grid-column: 1;
-    grid-row: 1;
     align-content: center;
 }
 
 .audio-container .audio-duration-time {
     text-align: left;
     padding-left: 10px;
-    grid-column: 3;
-    grid-row: 1;
     align-content: center;
 }
 
-.audio-container .audio-progress {
-    grid-column: 2;
-    grid-row: 1;
+.audio-container .audio-progress-bar {
+    flex-grow: 1;
     align-content: center;
-}
-
-.audio-container .audio-buttons {
-    text-align: center;
-    grid-column: 1 / 4;
-    grid-row: 2;
 }

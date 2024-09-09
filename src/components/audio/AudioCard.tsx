@@ -47,20 +47,22 @@ export default function ({
 
     return (
         <div className="audio-container">
-            <div className="audio-info">{currentTrack?.name}</div>
+            <div className="audio-info"><div>{currentTrack?.name}</div><div><strong>Playlist Name</strong></div></div>
             <div className="audio-controls">
-                <div className="audio-current-time">{fromNumberToTime(progress)}</div>
-                <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
-                <div className="audio-progress">
-                    <ProgressBar
-                        position={progress}
-                        duration={duration}
-                        selected={x => onProgressSeeked(duration * x)}
-                    />
-                </div>
                 <div className="audio-buttons">
                     <span className="audio-button">{middleButton}</span>
                     <span className="audio-button">{middleButton}</span>
+                </div>
+                <div className="audio-progress">
+                    <div className="audio-current-time">{fromNumberToTime(progress)}</div>
+                    <div className="audio-progress-bar">
+                        <ProgressBar
+                            position={progress}
+                            duration={duration}
+                            selected={x => onProgressSeeked(duration * x)}
+                        />
+                    </div>
+                    <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
                 </div>
             </div>
         </div>
