@@ -8,9 +8,6 @@ type ActiveItem = "playlists" | "queue"
 export default function () {
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  // main part
-  const [activeTab, setActiveTab] = useState<ActiveItem>("playlists")
-
   // queue track part
   const [tracks, setTracks] = useState<Track[]>([])
   const [position, setPosition] = useState(-1)
@@ -28,7 +25,6 @@ export default function () {
         <button onClick={() => {
           setPosition(0)
           setTracks(x.tracks)
-          setActiveTab("queue")
         }}>Play</button>
         <button onClick={() => {
           setTracks([...tracks, ...x.tracks])
@@ -51,11 +47,14 @@ export default function () {
     <>
       <div className="main-container">
         <div className="content">
-          <button onClick={() => setActiveTab("playlists")}>Playlists</button>
-          <button onClick={() => setActiveTab("queue")}>Queue</button>
-          <hr />
-          {activeTab == "playlists" ? playList : null}
-          {activeTab == "queue" ? queueList : null}
+          <div>
+            {playList}
+          </div>
+          <div>
+            <ul>
+              {queueList}
+            </ul>
+          </div>
         </div>
         <div className="controls">
           {currentTrack == null

@@ -13,6 +13,7 @@ body {
 .main-container .content {
     flex-grow: 1;
     overflow: auto;
+    display: flex;
 }
 
 .main-container .controls {
