@@ -36,12 +36,12 @@ export default function ({
     const middleButton = playing
         ? <Pause
             size={35}
-            color="white"
+            color="#fe6060"
             onClick={onPause}
         />
         : <Play
             size={35}
-            color="white"
+            color="#fe6060"
             onClick={onPlay}
         />
 

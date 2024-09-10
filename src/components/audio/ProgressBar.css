@@ -1,33 +1,32 @@
 .audio-progress-bar-component {
-    display: grid;
-    width: 100%;
+    position: relative;
     height: 1vh;
     cursor: pointer;
 }
 
 .audio-progress-bar-component .background {
-    grid-column: 1;
-    grid-row: 1;
+    position: absolute;
+    height: 1vh;
+    width: 100%;
     margin: 0.2vh 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #555766;
     border-radius: 1vh;
 }
 
 .audio-progress-bar-component .fill {
-    grid-column: 1;
-    grid-row: 1;
+    position: absolute;
+    height: 1vh;
     margin: 0.1vh 0;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: #fe6060;
     border-radius: 1vh;
 }
 
 .audio-progress-bar-component .seeker {
-    grid-column: 1;
-    grid-row: 1;
-    position: relative;
+    position: absolute;
     background-color: white;
-    margin-left: -0.5vh;
-    width: 1vh;
-    height: 1vh;
+    margin-left: -1vh;
+    margin-top: -0.5vh;
+    width: 2vh;
+    height: 2vh;
     border-radius: 1vh;
 }

@@ -1,25 +1,27 @@
 .audio-container {
     display: flex;
-    background-color: #333;
+    background-color: #333647;
     color: whitesmoke;
-    padding: 1vh 1vw;
-}
-
-.audio-container .audio-button {
-    cursor: pointer;
+    height: 100%;
 }
 
 .audio-container .audio-info {
+    padding: 1vh 1vw;
     text-align: left;
     max-width: 30vw;
 }
 
 .audio-container .audio-controls {
+    padding: 1vh 1vw;
     flex-grow: 1;
 }
 
 .audio-container .audio-buttons {
     text-align: center;
+}
+
+.audio-container .audio-button {
+    cursor: pointer;
 }
 
 .audio-container .audio-progress {
