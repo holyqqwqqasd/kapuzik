@@ -1,5 +1,5 @@
 interface Track {
-    id: number
+    id: string
     name: string
     url: string
 }

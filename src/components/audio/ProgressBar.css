@@ -6,7 +6,7 @@
 
 .audio-progress-bar-component .background {
     position: absolute;
-    height: 1vh;
+    height: 0.5vh;
     width: 100%;
     margin: 0.2vh 0;
     background-color: #555766;
@@ -15,7 +15,7 @@
 
 .audio-progress-bar-component .fill {
     position: absolute;
-    height: 1vh;
+    height: 0.7vh;
     margin: 0.1vh 0;
     background-color: #fe6060;
     border-radius: 1vh;
@@ -24,9 +24,9 @@
 .audio-progress-bar-component .seeker {
     position: absolute;
     background-color: white;
-    margin-left: -1vh;
-    margin-top: -0.5vh;
-    width: 2vh;
-    height: 2vh;
+    margin-left: -0.75vh;
+    margin-top: -0.4vh;
+    width: 1.5vh;
+    height: 1.5vh;
     border-radius: 1vh;
 }

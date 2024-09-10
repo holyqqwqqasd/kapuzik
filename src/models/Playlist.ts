@@ -1,5 +1,5 @@
 interface Playlist {
-    id: number
+    id: string
     name: string
     tracks: Track[]
 }
