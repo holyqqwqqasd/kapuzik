@@ -3,15 +3,15 @@ import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
 import test_config from '../../models/test_config.ts'
 
-type ActiveItem = "playlists" | "queue"
-
 export default function () {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // queue track part
-  const [tracks, setTracks] = useState<Track[]>([])
+  const [playlist, setPlaylist] = useState<Playlist | null>(null)
   const [position, setPosition] = useState(-1)
-  const currentTrack = position >= 0 ? tracks[position] : null
+  const currentTrack = position >= 0 && playlist !== null
+    ? playlist.tracks[position]
+    : null
 
   // audio card part
   const [progress, setProgress] = useState(0)
@@ -23,22 +23,25 @@ export default function () {
       <div key={x.id}>
         {x.name}
         <button onClick={() => {
+          if (playlist?.id == x.id) {
+            return
+          }
+
           setPosition(0)
-          setTracks(x.tracks)
+          setPlaylist(x)
         }}>Play</button>
-        <button onClick={() => {
-          setTracks([...tracks, ...x.tracks])
-        }}>Add to queue</button>
+        <strong>{playlist?.id == x.id ? "PLAYING" : ""}</strong>
       </div>
     )
-  const queueList =
-    tracks.map((x, i) =>
+  const queueList = playlist !== null
+    ? playlist.tracks.map((x, i) =>
       <li key={i}>
         <button onClick={() => setPosition(i)}>Play</button>
         <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
         <span style={{ color: i == position ? "red" : "black" }}>{x.name}</span>
       </li>
     )
+    : null
   const onPlay = () => { audioRef.current!.play() }
   const onPause = () => { audioRef.current!.pause() }
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
@@ -93,9 +96,13 @@ export default function () {
               setDuration(audio.duration)
             }}
             onEnded={_ => {
+              if (playlist === null) {
+                return
+              }
+
               const nextPosition = position + 1
 
-              if (nextPosition < tracks.length) {
+              if (nextPosition < playlist.tracks.length) {
                 setPosition(nextPosition)
               } else {
                 setPosition(-1)
