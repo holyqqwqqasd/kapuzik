@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
 import test_config from '../../models/test_config.ts'
+import PlaylistItem from '../containers/PlaylistItem.tsx'
 
 export default function () {
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -20,18 +21,17 @@ export default function () {
 
   const playList =
     test_config.map(x =>
-      <div key={x.id}>
-        {x.name}
-        <button onClick={() => {
+      <PlaylistItem
+        playlist={x}
+        playing={playlist?.id == x.id}
+        onPlay={() => {
           if (playlist?.id == x.id) {
             return
           }
 
           setPosition(0)
           setPlaylist(x)
-        }}>Play</button>
-        <strong>{playlist?.id == x.id ? "PLAYING" : ""}</strong>
-      </div>
+        }} />
     )
   const queueList = playlist !== null
     ? playlist.tracks.map((x, i) =>
