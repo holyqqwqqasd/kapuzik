@@ -5,9 +5,21 @@
     height: 100%;
 }
 
+.audio-container .audio-cover {
+    padding: 1vh 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5vw;
+}
+
+.audio-container .audio-cover img {
+    width: 100%;
+}
+
 .audio-container .audio-info {
     padding: 1vh 1vw;
-    text-align: left;
+    align-content: center;
     max-width: 30vw;
 }
 

@@ -47,7 +47,13 @@ export default function ({
 
     return (
         <div className="audio-container">
-            <div className="audio-info"><div>{currentTrack?.name}</div><div><strong>Playlist Name</strong></div></div>
+            <div className="audio-cover">
+                <img src={currentTrack.cover ?? '#'}></img>
+            </div>
+            <div className="audio-info">
+                <div>{currentTrack.name}</div>
+                <div><strong>{currentTrack.artist}</strong></div>
+            </div>
             <div className="audio-controls">
                 <div className="audio-buttons">
                     <span className="audio-button">{middleButton}</span>
