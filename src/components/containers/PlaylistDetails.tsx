@@ -18,7 +18,9 @@ export default function ({ playlist, playing, position, onPlay }: State) {
 
     return (
         <>
-            <div>
+            <div className="card" style={{
+                background: `linear-gradient(180deg, ${playlist.color} 0%, black 60%)`
+            }}>
                 <div>{playlist.name}. IS PLAYING: {playing ? "Y" : "N"}</div>
                 <ul>
                     {items}
