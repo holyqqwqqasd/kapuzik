@@ -43,21 +43,21 @@ export default function () {
       <div className="main-container">
         <div className="content">
           <div className="playlists">
-            {playList}
+            <div className="card">
+              {playList}
+            </div>
           </div>
           <div className="details">
-            <ul>
-              {playlistView !== null
-                ? <PlaylistDetails
-                  playlist={playlistView}
-                  position={position}
-                  playing={playlistView.id == playingPlaylist?.id}
-                  onPlay={(newPosition) => {
-                    setPosition(newPosition)
-                    setPlaylist(playlistView)
-                  }} />
-                : null}
-            </ul>
+            {playlistView !== null
+              ? <PlaylistDetails
+                playlist={playlistView}
+                position={position}
+                playing={playlistView.id == playingPlaylist?.id}
+                onPlay={(newPosition) => {
+                  setPosition(newPosition)
+                  setPlaylist(playlistView)
+                }} />
+              : null}
           </div>
         </div>
         <div className="controls">

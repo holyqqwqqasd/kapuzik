@@ -18,8 +18,12 @@ export default function ({ playlist, playing, position, onPlay }: State) {
 
     return (
         <>
-            <div>{playlist.name}. IS PLAYING: {playing ? "Y" : "N"}</div>
-            {items}
+            <div>
+                <div>{playlist.name}. IS PLAYING: {playing ? "Y" : "N"}</div>
+                <ul>
+                    {items}
+                </ul>
+            </div>
         </>
     )
 }

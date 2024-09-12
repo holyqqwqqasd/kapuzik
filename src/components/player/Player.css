@@ -20,8 +20,14 @@ body {
 }
 
 .main-container .content .playlists {
+    padding: 1vw;
     width: 30vw;
+}
+
+.main-container .content .playlists .card {
     background-color: #121212;
+    padding: 1vw;
+    border-radius: 1vw;
 }
 
 .main-container .content .details {
