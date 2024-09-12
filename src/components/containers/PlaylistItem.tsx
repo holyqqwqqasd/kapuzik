@@ -1,14 +1,21 @@
+import "./PlaylistItem.css"
+
 interface State {
     playlist: Playlist
     playing: boolean
-    onPlay: () => void
+    onSelect: () => void
 }
 
-export default function ({ playlist, playing, onPlay }: State) {
+export default function ({ playlist, playing, onSelect }: State) {
     return (
-        <div>
-            IMG: {playlist.cover}, {playlist.name} {playing ? "ON" : "OFF"}
-            <button onClick={onPlay}>GOOOO</button>
+        <div className="playlist-item-component">
+            <div className="image">
+                <img src={playlist.cover} />
+            </div>
+            <div className="playlist-name">
+                {playlist.name}
+            </div>
+            <button onClick={onSelect}>SELECT {playing ? "Y" : "N"}</button>
         </div>
     )
 }

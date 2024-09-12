@@ -20,7 +20,7 @@ function fromNumberToTime(x: number) {
     const m = minutes < 10 ? `0${minutes}` : minutes
     const s = seconds < 10 ? `0${seconds}` : seconds
 
-    return `${m}:${s}`;
+    return `${m}:${s}`
 }
 
 export default function ({

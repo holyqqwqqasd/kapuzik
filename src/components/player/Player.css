@@ -16,6 +16,10 @@ body {
     display: flex;
 }
 
-.main-container .controls {
-    
+.main-container .content .playlists {
+    width: 30vw;
+}
+
+.main-container .content .details {
+    flex-grow: 1;
 }

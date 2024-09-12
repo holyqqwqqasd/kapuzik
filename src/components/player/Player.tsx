@@ -3,15 +3,17 @@ import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
 import test_config from '../../models/test_config.ts'
 import PlaylistItem from '../containers/PlaylistItem.tsx'
+import PlaylistDetails from '../containers/PlaylistDetails.tsx'
 
 export default function () {
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  // queue track part
-  const [playlist, setPlaylist] = useState<Playlist | null>(null)
+  // playlist part
+  const [playlistView, setPlaylistView] = useState<Playlist | null>(null)
+  const [playingPlaylist, setPlaylist] = useState<Playlist | null>(null)
   const [position, setPosition] = useState(-1)
-  const currentTrack = position >= 0 && playlist !== null
-    ? playlist.tracks[position]
+  const currentTrack = position >= 0 && playingPlaylist !== null
+    ? playingPlaylist.tracks[position]
     : null
 
   // audio card part
@@ -23,25 +25,15 @@ export default function () {
     test_config.map(x =>
       <PlaylistItem
         playlist={x}
-        playing={playlist?.id == x.id}
-        onPlay={() => {
-          if (playlist?.id == x.id) {
+        playing={playingPlaylist?.id == x.id}
+        onSelect={() => {
+          if (playlistView?.id == x.id) {
             return
           }
 
-          setPosition(0)
-          setPlaylist(x)
+          setPlaylistView(x)
         }} />
     )
-  const queueList = playlist !== null
-    ? playlist.tracks.map((x, i) =>
-      <li key={i}>
-        <button onClick={() => setPosition(i)}>Play</button>
-        <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
-        <span style={{ color: i == position ? "red" : "black" }}>{x.name}</span>
-      </li>
-    )
-    : null
   const onPlay = () => { audioRef.current!.play() }
   const onPause = () => { audioRef.current!.pause() }
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
@@ -50,12 +42,21 @@ export default function () {
     <>
       <div className="main-container">
         <div className="content">
-          <div>
+          <div className="playlists">
             {playList}
           </div>
-          <div>
+          <div className="details">
             <ul>
-              {queueList}
+              {playlistView !== null
+                ? <PlaylistDetails
+                  playlist={playlistView}
+                  position={position}
+                  playing={playlistView.id == playingPlaylist?.id}
+                  onPlay={(newPosition) => {
+                    setPosition(newPosition)
+                    setPlaylist(playlistView)
+                  }} />
+                : null}
             </ul>
           </div>
         </div>
@@ -96,13 +97,13 @@ export default function () {
               setDuration(audio.duration)
             }}
             onEnded={_ => {
-              if (playlist === null) {
+              if (playingPlaylist === null) {
                 return
               }
 
               const nextPosition = position + 1
 
-              if (nextPosition < playlist.tracks.length) {
+              if (nextPosition < playingPlaylist.tracks.length) {
                 setPosition(nextPosition)
               } else {
                 setPosition(-1)
