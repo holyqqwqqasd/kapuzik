@@ -2,6 +2,9 @@ html,
 body {
     margin: 0;
     padding: 0;
+    color: white;
+    background-color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .main-container {
@@ -18,6 +21,7 @@ body {
 
 .main-container .content .playlists {
     width: 30vw;
+    background-color: #121212;
 }
 
 .main-container .content .details {

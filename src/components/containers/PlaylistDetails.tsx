@@ -12,13 +12,13 @@ export default function ({ playlist, playing, position, onPlay }: State) {
         <li key={i}>
             <button onClick={() => onPlay(i)}>Play</button>
             <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
-            <span style={{ color: i == playingIndex ? "red" : "black" }}>{x.name}</span>
+            <span style={{ color: i == playingIndex ? "red" : undefined }}>{x.name}</span>
         </li>
     )
 
     return (
         <>
-            <div>IS PLAYING: {playing ? "Y" : "N"}</div>
+            <div>{playlist.name}. IS PLAYING: {playing ? "Y" : "N"}</div>
             {items}
         </>
     )

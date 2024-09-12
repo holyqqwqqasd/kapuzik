@@ -8,14 +8,13 @@ interface State {
 
 export default function ({ playlist, playing, onSelect }: State) {
     return (
-        <div className="playlist-item-component">
+        <div className="playlist-item-component" onClick={onSelect}>
             <div className="image">
                 <img src={playlist.cover} />
             </div>
             <div className="playlist-name">
                 {playlist.name}
             </div>
-            <button onClick={onSelect}>SELECT {playing ? "Y" : "N"}</button>
         </div>
     )
 }
