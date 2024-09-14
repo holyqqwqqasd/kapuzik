@@ -1,3 +1,4 @@
+import Link from '../images/link'
 import Pause from '../images/pause'
 import Play from '../images/play'
 import './PlaylistDetails.css'
@@ -29,7 +30,6 @@ export default function ({ playlist, state, onPlay, onPause }: State) {
                     onClick={() => onPlay(i)}
                 />}
             <span style={{ color: state && i == state.position ? "red" : undefined }}>{x.name}</span>
-            <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
         </div>
     )
 

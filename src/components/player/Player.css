@@ -4,7 +4,10 @@ body {
     padding: 0;
     color: white;
     background-color: black;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 1em;
+    font-style: normal;
 }
 
 .main-container {

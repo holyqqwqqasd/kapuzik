@@ -20,7 +20,8 @@
 .audio-container .audio-info {
     padding: 1vh 1vw;
     align-content: center;
-    max-width: 30vw;
+    width: 25vw;
+    flex-shrink: 0;
 }
 
 .audio-container .audio-controls {
