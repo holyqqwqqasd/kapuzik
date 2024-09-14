@@ -1,0 +1,24 @@
+.playlist-details-component {}
+
+.playlist-details-component .info {
+    display: flex;
+    height: 13vw;
+    padding: 3vw;
+}
+
+.playlist-details-component .info img {
+    height: 100%;
+    border-radius: 1vw;
+    box-shadow: 5px 5px 5px #0008;
+}
+
+.playlist-details-component .info .title {
+    flex-grow: 1;
+    align-content: center;
+    padding-left: 3vw;
+    font-size: xxx-large;
+}
+
+.playlist-details-component .tracks {
+    background-color: #0005;
+}

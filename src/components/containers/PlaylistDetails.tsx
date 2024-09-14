@@ -1,3 +1,4 @@
+import './PlaylistDetails.css'
 
 interface State {
     playlist: Playlist
@@ -21,10 +22,17 @@ export default function ({ playlist, playing, position, onPlay }: State) {
             <div className="card" style={{
                 background: `linear-gradient(180deg, ${playlist.color} 0%, black 60%)`
             }}>
-                <div>{playlist.name}. IS PLAYING: {playing ? "Y" : "N"}</div>
-                <ul>
-                    {items}
-                </ul>
+                <div className="playlist-details-component">
+                    <div className="info">
+                        <img src={playlist.cover} />
+                        <div className="title">{playlist.name}</div>
+                    </div>
+                    <div className="tracks">
+                        <ul>
+                            {items}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </>
     )

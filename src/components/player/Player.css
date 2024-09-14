@@ -22,6 +22,7 @@ body {
 .main-container .content .playlists {
     padding: 1vh;
     width: 30vw;
+    flex-shrink: 0;
 }
 
 .main-container .content .playlists .card {
