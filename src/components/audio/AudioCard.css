@@ -32,10 +32,6 @@
     text-align: center;
 }
 
-.audio-container .audio-button {
-    cursor: pointer;
-}
-
 .audio-container .audio-progress {
     align-content: center;
     display: flex;

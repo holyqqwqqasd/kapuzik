@@ -22,3 +22,14 @@
 .playlist-details-component .tracks {
     background-color: #0005;
 }
+
+.playlist-details-component .tracks .track-item {
+    padding: 1vh 1vw;
+    display: flex;
+}
+
+.playlist-details-component .tracks .track-item span {
+    align-content: center;
+    flex-grow: 1;
+    padding-left: 1vw;
+}

@@ -51,12 +51,19 @@ export default function () {
             {playlistView !== null
               ? <PlaylistDetails
                 playlist={playlistView}
-                position={position}
-                playing={playlistView.id == playingPlaylist?.id}
+                state={playlistView.id == playingPlaylist?.id
+                  ? { position, playing }
+                  : null}
                 onPlay={(newPosition) => {
+                  if (newPosition == position) {
+                    onPlay();
+                    return;
+                  }
+
                   setPosition(newPosition)
                   setPlaylist(playlistView)
-                }} />
+                }}
+                onPause={onPause} />
               : null}
           </div>
         </div>

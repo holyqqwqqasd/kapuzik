@@ -1,20 +1,36 @@
+import Pause from '../images/pause'
+import Play from '../images/play'
 import './PlaylistDetails.css'
+
+interface PlayState {
+    playing: boolean
+    position: number
+}
 
 interface State {
     playlist: Playlist
-    playing: boolean
-    position: number
+    state: PlayState | null
     onPlay: (position: number) => void
+    onPause: () => void
 }
 
-export default function ({ playlist, playing, position, onPlay }: State) {
-    const playingIndex = playing ? position : -1
+export default function ({ playlist, state, onPlay, onPause }: State) {
     const items = playlist.tracks.map((x, i) =>
-        <li key={i}>
-            <button onClick={() => onPlay(i)}>Play</button>
+        <div className="track-item" key={i}>
+            {state && i == state.position && state.playing
+                ? <Pause
+                    size={35}
+                    color="#fe6060"
+                    onClick={onPause}
+                />
+                : <Play
+                    size={35}
+                    color="#fe6060"
+                    onClick={() => onPlay(i)}
+                />}
+            <span style={{ color: state && i == state.position ? "red" : undefined }}>{x.name}</span>
             <button onClick={() => navigator.clipboard.writeText(x.url)}>URL</button>
-            <span style={{ color: i == playingIndex ? "red" : undefined }}>{x.name}</span>
-        </li>
+        </div>
     )
 
     return (
@@ -28,9 +44,7 @@ export default function ({ playlist, playing, position, onPlay }: State) {
                         <div className="title">{playlist.name}</div>
                     </div>
                     <div className="tracks">
-                        <ul>
-                            {items}
-                        </ul>
+                        {items}
                     </div>
                 </div>
             </div>

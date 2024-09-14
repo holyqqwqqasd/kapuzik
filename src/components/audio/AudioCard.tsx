@@ -56,8 +56,8 @@ export default function ({
             </div>
             <div className="audio-controls">
                 <div className="audio-buttons">
-                    <span className="audio-button">{middleButton}</span>
-                    <span className="audio-button">{middleButton}</span>
+                    {middleButton}
+                    {middleButton}
                 </div>
                 <div className="audio-progress">
                     <div className="audio-current-time">{fromNumberToTime(progress)}</div>
