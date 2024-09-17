@@ -22,9 +22,10 @@ export default function () {
   const [playing, setPlaying] = useState(false)
 
   const playList =
-    test_config.map(x =>
+    test_config.playlists.map(x =>
       <PlaylistItem
         key={x.id}
+        config={test_config}
         playlist={x}
         playing={playingPlaylist?.id == x.id}
         onSelect={() => {
@@ -51,14 +52,15 @@ export default function () {
           <div className="details">
             {playlistView !== null
               ? <PlaylistDetails
+                config={test_config}
                 playlist={playlistView}
                 state={playlistView.id == playingPlaylist?.id
                   ? { position, playing }
                   : null}
                 onPlay={(newPosition) => {
                   if (newPosition == position) {
-                    onPlay();
-                    return;
+                    onPlay()
+                    return
                   }
 
                   setPosition(newPosition)
@@ -72,7 +74,9 @@ export default function () {
           {currentTrack == null
             ? null
             : <AudioCard
+              config={test_config}
               currentTrack={currentTrack}
+              playlist={playingPlaylist!}
               progress={progress}
               playing={playing}
               duration={duration}
@@ -117,7 +121,7 @@ export default function () {
                 setPosition(-1)
               }
             }}
-            src={currentTrack.url}
+            src={test_config.baseUrl + currentTrack.url}
           />}
       </div>
     </>

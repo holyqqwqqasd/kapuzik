@@ -4,6 +4,8 @@ import ProgressBar from './ProgressBar.tsx'
 import './AudioCard.css'
 
 interface State {
+    config: PlayerConfig
+    playlist: Playlist
     currentTrack: Track
     playing: boolean
     progress: number
@@ -24,6 +26,8 @@ function fromNumberToTime(x: number) {
 }
 
 export default function ({
+    config,
+    playlist,
     currentTrack,
     playing,
     progress,
@@ -45,10 +49,12 @@ export default function ({
             onClick={onPlay}
         />
 
+    const cover = currentTrack.cover ?? playlist.cover ?? null
+
     return (
         <div className="audio-container">
             <div className="audio-cover">
-                <img src={currentTrack.cover ?? '#'}></img>
+                {cover ? <img src={config.baseUrl + cover}></img> : null}
             </div>
             <div className="audio-info">
                 <div>{currentTrack.name}</div>

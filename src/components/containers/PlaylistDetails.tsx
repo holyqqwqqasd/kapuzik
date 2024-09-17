@@ -8,13 +8,14 @@ interface PlayState {
 }
 
 interface State {
+    config: PlayerConfig
     playlist: Playlist
     state: PlayState | null
     onPlay: (position: number) => void
     onPause: () => void
 }
 
-export default function ({ playlist, state, onPlay, onPause }: State) {
+export default function ({ config, playlist, state, onPlay, onPause }: State) {
     const items = playlist.tracks.map((x, i) =>
         <div className={"track-item " + (state && i == state.position ? "active" : "")} key={i}>
             {state && i == state.position && state.playing
@@ -35,11 +36,11 @@ export default function ({ playlist, state, onPlay, onPause }: State) {
     return (
         <>
             <div className="card" style={{
-                background: `linear-gradient(180deg, ${playlist.color} 0%, black 60%)`
+                background: `linear-gradient(180deg, ${playlist.color ?? "#fe6060"} 0%, black 60%)`
             }}>
                 <div className="playlist-details-component">
                     <div className="info">
-                        <img src={playlist.cover} />
+                        {playlist.cover ? <img src={config.baseUrl + playlist.cover} /> : null}
                         <div className="title">{playlist.name}</div>
                     </div>
                     <div className="tracks">
