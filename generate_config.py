@@ -9,7 +9,7 @@ uniq_id = 0
 def get_new_id():
     global uniq_id
     uniq_id += 1
-    return uniq_id
+    return str(uniq_id)
 
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
