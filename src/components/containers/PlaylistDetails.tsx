@@ -1,4 +1,3 @@
-import Link from '../images/link'
 import Pause from '../images/pause'
 import Play from '../images/play'
 import './PlaylistDetails.css'

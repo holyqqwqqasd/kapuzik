@@ -24,6 +24,7 @@ export default function () {
   const playList =
     test_config.map(x =>
       <PlaylistItem
+        key={x.id}
         playlist={x}
         playing={playingPlaylist?.id == x.id}
         onSelect={() => {

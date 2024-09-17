@@ -2,8 +2,8 @@
 
 .playlist-details-component .info {
     display: flex;
-    height: 13vw;
-    padding: 3vw;
+    height: 13vh;
+    padding: 3vh;
 }
 
 .playlist-details-component .info img {
