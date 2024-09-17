@@ -16,7 +16,7 @@ interface State {
 
 export default function ({ playlist, state, onPlay, onPause }: State) {
     const items = playlist.tracks.map((x, i) =>
-        <div className="track-item" key={i}>
+        <div className={"track-item " + (state && i == state.position ? "active" : "")} key={i}>
             {state && i == state.position && state.playing
                 ? <Pause
                     size={35}
@@ -28,7 +28,7 @@ export default function ({ playlist, state, onPlay, onPause }: State) {
                     color="#fe6060"
                     onClick={() => onPlay(i)}
                 />}
-            <span style={{ color: state && i == state.position ? "red" : undefined }}>{x.name}</span>
+            <span>{x.name}</span>
         </div>
     )
 

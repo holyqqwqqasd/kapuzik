@@ -28,6 +28,10 @@
     display: flex;
 }
 
+.playlist-details-component .tracks .track-item.active {
+    background: linear-gradient(90deg, #333647 0%, transparent 100%);
+}
+
 .playlist-details-component .tracks .track-item span {
     align-content: center;
     flex-grow: 1;
