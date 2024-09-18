@@ -1,11 +1,14 @@
 import { useState, useRef } from 'react'
 import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
-import test_config from '../../models/test_config.ts'
 import PlaylistItem from '../containers/PlaylistItem.tsx'
 import PlaylistDetails from '../containers/PlaylistDetails.tsx'
 
-export default function () {
+interface State {
+  config: PlayerConfig
+}
+
+export default function ({ config }: State) {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // playlist part
@@ -23,21 +26,20 @@ export default function () {
   const [duration, setDuration] = useState(0)
   const [playing, setPlaying] = useState(false)
 
-  const playList =
-    test_config.playlists.map(x =>
-      <PlaylistItem
-        key={x.id}
-        config={test_config}
-        playlist={x}
-        playing={playingPlaylist?.id == x.id}
-        onSelect={() => {
-          if (playlistView?.id == x.id) {
-            return
-          }
+  const playList = config.playlists.map(x =>
+    <PlaylistItem
+      key={x.id}
+      config={config}
+      playlist={x}
+      playing={playingPlaylist?.id == x.id}
+      onSelect={() => {
+        if (playlistView?.id == x.id) {
+          return
+        }
 
-          setPlaylistView(x)
-        }} />
-    )
+        setPlaylistView(x)
+      }} />
+  )
   const onPlay = () => { audioRef.current!.play() }
   const onPause = () => { audioRef.current!.pause() }
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
@@ -54,7 +56,7 @@ export default function () {
           <div className="details">
             {playlistView !== null
               ? <PlaylistDetails
-                config={test_config}
+                config={config}
                 playlist={playlistView}
                 state={openedPlaylistIsPlaying ? { position, playing } : null}
                 onPlay={(newPosition) => {
@@ -74,7 +76,7 @@ export default function () {
           {currentTrack == null
             ? null
             : <AudioCard
-              config={test_config}
+              config={config}
               currentTrack={currentTrack}
               playlist={playingPlaylist!}
               progress={progress}
@@ -121,7 +123,7 @@ export default function () {
                 setPosition(-1)
               }
             }}
-            src={test_config.baseUrl + currentTrack.url}
+            src={config.baseUrl + currentTrack.url}
           />}
       </div>
     </>
