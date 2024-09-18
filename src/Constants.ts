@@ -1,0 +1,1 @@
+const COLOR_BUTTONS: string = "#1ed760"

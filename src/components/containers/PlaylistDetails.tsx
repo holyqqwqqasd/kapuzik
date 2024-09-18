@@ -35,9 +35,7 @@ export default function ({ config, playlist, state, onPlay, onPause }: State) {
 
     return (
         <>
-            <div className="card" style={{
-                background: `linear-gradient(180deg, ${playlist.color ?? "#fe6060"} 0%, black 60%)`
-            }}>
+            <div className="card">
                 <div className="playlist-details-component">
                     <div className="info">
                         {playlist.cover ? <img src={config.baseUrl + playlist.cover} /> : null}

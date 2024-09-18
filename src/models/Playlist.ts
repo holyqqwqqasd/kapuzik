@@ -1,7 +1,6 @@
 interface Playlist {
     id: string
     name: string
-    cover: string
-    color?: string
+    cover?: string | null
     tracks: Track[]
 }
