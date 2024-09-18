@@ -15,8 +15,10 @@
 }
 
 .playlist-item-component .image img {
-    width: 100%;
     border-radius: 0.5vw;
+    width: 5vh;
+    height: 5vh;
+    object-fit: cover;
 }
 
 .playlist-item-component .playlist-name {

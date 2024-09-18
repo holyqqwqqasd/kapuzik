@@ -10,13 +10,15 @@
     height: 100%;
     border-radius: 1vw;
     box-shadow: 5px 5px 5px #0008;
+    object-fit: cover;
+    width: 13vh;
 }
 
 .playlist-details-component .info .title {
     flex-grow: 1;
     align-content: center;
     padding-left: 3vw;
-    font-size: xxx-large;
+    font-size: 3vw;
 }
 
 .playlist-details-component .tracks {

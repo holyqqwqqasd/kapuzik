@@ -15,6 +15,8 @@ export default function () {
   const currentTrack = position >= 0 && playingPlaylist !== null
     ? playingPlaylist.tracks[position]
     : null
+  const openedPlaylistIsPlaying =
+    playlistView && playingPlaylist && playlistView.id == playingPlaylist.id
 
   // audio card part
   const [progress, setProgress] = useState(0)
@@ -54,11 +56,9 @@ export default function () {
               ? <PlaylistDetails
                 config={test_config}
                 playlist={playlistView}
-                state={playlistView.id == playingPlaylist?.id
-                  ? { position, playing }
-                  : null}
+                state={openedPlaylistIsPlaying ? { position, playing } : null}
                 onPlay={(newPosition) => {
-                  if (newPosition == position) {
+                  if (newPosition == position && openedPlaylistIsPlaying) {
                     onPlay()
                     return
                   }
@@ -109,7 +109,7 @@ export default function () {
               setDuration(audio.duration)
             }}
             onEnded={_ => {
-              if (playingPlaylist === null) {
+              if (playingPlaylist == null) {
                 return
               }
 
