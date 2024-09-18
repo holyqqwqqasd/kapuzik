@@ -1,1 +1,3 @@
-const COLOR_BUTTONS: string = "#1ed760"
+const COLOR_BUTTONS = "#1ed760"
+
+export { COLOR_BUTTONS }

@@ -1,6 +1,7 @@
 import Pause from '../images/pause.tsx'
 import Play from '../images/play.tsx'
 import ProgressBar from './ProgressBar.tsx'
+import { COLOR_BUTTONS } from '../../Constants.ts'
 import './AudioCard.css'
 
 interface State {
@@ -40,12 +41,12 @@ export default function ({
     const middleButton = playing
         ? <Pause
             size={35}
-            color="#fe6060"
+            color={COLOR_BUTTONS}
             onClick={onPause}
         />
         : <Play
             size={35}
-            color="#fe6060"
+            color={COLOR_BUTTONS}
             onClick={onPlay}
         />
 

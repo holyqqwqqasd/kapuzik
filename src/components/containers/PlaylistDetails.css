@@ -24,7 +24,7 @@
 }
 
 .playlist-details-component .tracks {
-    background-color: #0005;
+    background-color: #121212;
 }
 
 .playlist-details-component .tracks .track-item {
@@ -33,7 +33,7 @@
 }
 
 .playlist-details-component .tracks .track-item.active {
-    background: #333647;
+    background-color: #232323;
 }
 
 .playlist-details-component .tracks .track-item span {

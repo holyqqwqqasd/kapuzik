@@ -1,5 +1,6 @@
 import Pause from '../images/pause'
 import Play from '../images/play'
+import { COLOR_BUTTONS } from '../../Constants.ts'
 import './PlaylistDetails.css'
 
 interface PlayState {
@@ -21,12 +22,12 @@ export default function ({ config, playlist, state, onPlay, onPause }: State) {
             {state && i == state.position && state.playing
                 ? <Pause
                     size={35}
-                    color="#fe6060"
+                    color={COLOR_BUTTONS}
                     onClick={onPause}
                 />
                 : <Play
                     size={35}
-                    color="#fe6060"
+                    color={COLOR_BUTTONS}
                     onClick={() => onPlay(i)}
                 />}
             <span>{x.name}</span>
