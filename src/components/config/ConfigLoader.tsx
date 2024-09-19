@@ -4,17 +4,19 @@ interface State {
     onSave: (jsonConfig: string) => void
 }
 
-type LoadType = "json" | "file"
+type LoadType = "json" | "file" | "url"
 
 export default function ({ onSave }: State) {
     const [type, setType] = useState<LoadType>("file")
     const refText = useRef<HTMLTextAreaElement>(null)
     const refFile = useRef<HTMLInputElement>(null)
+    const refUrl = useRef<HTMLInputElement>(null)
 
     return (
         <>
             <button onClick={() => setType("json")}>JSON</button>
             <button onClick={() => setType("file")}>FILE</button>
+            <button onClick={() => setType("url")}>URL</button>
             <hr />
             {type == "json"
                 ? <div>
@@ -41,6 +43,16 @@ export default function ({ onSave }: State) {
                             onSave(json)
                         };
                         reader.readAsText(files[0])
+                    }}>Load</button>
+                </div>
+                : null}
+            {type == "url"
+                ? <div>
+                    <input type="text" ref={refUrl} />
+                    <button onClick={() => {
+                        fetch(refUrl.current!.value)
+                            .then(response => response.text())
+                            .then(txt => onSave(txt))
                     }}>Load</button>
                 </div>
                 : null}
