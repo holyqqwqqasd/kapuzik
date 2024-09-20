@@ -7,10 +7,16 @@ interface State {
 type LoadType = "json" | "file" | "url"
 
 export default function ({ onSave }: State) {
-    const [type, setType] = useState<LoadType>("file")
+    const [type, setType] = useState<LoadType>("url")
     const refText = useRef<HTMLTextAreaElement>(null)
     const refFile = useRef<HTMLInputElement>(null)
     const refUrl = useRef<HTMLInputElement>(null)
+
+    if (location.hash.length > 0) {
+        fetch(location.hash.substring(1))
+            .then(response => response.ok ? response.text() : Promise.reject())
+            .then(txt => onSave(txt))
+    }
 
     return (
         <>
@@ -48,7 +54,7 @@ export default function ({ onSave }: State) {
                 : null}
             {type == "url"
                 ? <div>
-                    <input type="text" ref={refUrl} />
+                    <input type="text" ref={refUrl} defaultValue={location.hash.substring(1)} />
                     <button onClick={() => {
                         fetch(refUrl.current!.value)
                             .then(response => response.text())

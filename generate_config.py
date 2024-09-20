@@ -42,6 +42,7 @@ for root, dirs, files in os.walk(path_to_music):
 
 result = {
     "baseUrl": BASE_URL,
+    "defaultCover": "default_cover.jpg",
     "playlists": playlists
 }
 print(json.dumps(result, indent=4))

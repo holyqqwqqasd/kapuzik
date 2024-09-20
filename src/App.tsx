@@ -10,15 +10,16 @@ function loadConfig(): PlayerConfig | null {
   if (config) {
     const playerConfig: PlayerConfig = JSON.parse(config)
     return playerConfig
-  } else {
-    console.warn('Config not found!')
-    return null
   }
+
+  console.warn('Config not found!')
+  return null
 }
 
 function saveConfig(jsonConfig: string): PlayerConfig {
+  const config = JSON.parse(jsonConfig)
   localStorage.setItem('config', jsonConfig)
-  return JSON.parse(jsonConfig)
+  return config
 }
 
 export default function () {
@@ -35,8 +36,14 @@ export default function () {
   return (
     <>
       <ConfigLoader onSave={(jsonConfig) => {
-        const newConfig = saveConfig(jsonConfig)
-        setConfig(newConfig)
+        try
+        {
+          const newConfig = saveConfig(jsonConfig)
+          setConfig(newConfig)
+        }
+        catch
+        {
+        }
       }} />
     </>
   )
