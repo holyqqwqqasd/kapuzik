@@ -53,7 +53,7 @@ export default function ({ config, clearConfig }: State) {
             <div className="card">
               {playList}
             </div>
-            <button className="delete-config" onClick={clearConfig}>Delete Config</button>
+            <button className="delete-config" onClick={clearConfig}>DELETE CONFIG</button>
           </div>
           <div className="details">
             {playlistView !== null

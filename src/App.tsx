@@ -18,12 +18,15 @@ function loadConfig(): PlayerConfig | null {
 
 function saveConfig(jsonConfig: string): PlayerConfig {
   const config = JSON.parse(jsonConfig)
+  // TODO: generate id
   localStorage.setItem('config', jsonConfig)
+  location.hash = ""
   return config
 }
 
 function clearConfig() {
   localStorage.removeItem('config')
+  location.hash = ""
   location.reload();
 }
 
