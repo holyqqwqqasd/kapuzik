@@ -101,7 +101,7 @@
     -webkit-appearance: none;
     /* Override default look */
     appearance: none;
-    margin-top: -12px;
+    margin-top: -0.5vh;
     /* Centers thumb on the track */
 
     /*custom styles*/
