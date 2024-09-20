@@ -27,7 +27,7 @@ export default function ({ config, clearConfig }: State) {
   const [duration, setDuration] = useState(0)
   const [playing, setPlaying] = useState(false)
 
-  const playList = config.playlists.map(x =>
+  const playList = config.playlists.sort((a, b) => a.name > b.name ? 1 : -1).map(x =>
     <PlaylistItem
       key={x.id}
       config={config}

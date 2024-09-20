@@ -17,7 +17,7 @@ interface State {
 }
 
 export default function ({ config, playlist, state, onPlay, onPause }: State) {
-    const items = playlist.tracks.map((x, i) =>
+    const items = playlist.tracks.sort((a, b) => a.name > b.name ? 1 : -1).map((x, i) =>
         <div className={"track-item " + (state && i == state.position ? "active" : "")} key={i}>
             {state && i == state.position && state.playing
                 ? <Pause
