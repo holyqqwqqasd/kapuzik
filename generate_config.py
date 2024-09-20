@@ -3,7 +3,7 @@ import json
 
 BASE_URL = "http://music.kapehh.net:8787/"
 
-path_to_music = "/home/karen/Downloads/test_for_script/"
+path_to_music = "/media/MUSIC/"
 
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
@@ -22,6 +22,7 @@ for root, dirs, files in os.walk(path_to_music):
     if files:
         cover = next((x for x in files if x.endswith((".png", ".jpg", ".jpeg"))), None)
         tracks = [x for x in files if x.endswith((".flac", ".mp3"))]
+        tracks.sort()
         if tracks:
             relative_path = remove_prefix(root, path_to_music)
             playlists.append(
