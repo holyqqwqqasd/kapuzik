@@ -4,6 +4,20 @@ import Player from './components/player/Player'
 
 // TODO: Сделать режим редактирования конфига, с возможностью его экспортирования
 
+function fillIds(config: PlayerConfig) {
+  var id = 0
+
+  for (var i = 0; i < config.playlists.length; i++) {
+    const playlist = config.playlists[i]
+    playlist.id = (++id).toString()
+
+    for (var k = 0; k < playlist.tracks.length; k++) {
+      const track = playlist.tracks[k]
+      track.id = (++id).toString()
+    }
+  }
+}
+
 function loadConfig(): PlayerConfig | null {
   const config = localStorage.getItem('config')
 
@@ -18,8 +32,8 @@ function loadConfig(): PlayerConfig | null {
 
 function saveConfig(jsonConfig: string): PlayerConfig {
   const config = JSON.parse(jsonConfig)
-  // TODO: generate id
-  localStorage.setItem('config', jsonConfig)
+  fillIds(config)
+  localStorage.setItem('config', JSON.stringify(config))
   location.hash = ""
   return config
 }
