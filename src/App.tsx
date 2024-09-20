@@ -22,13 +22,20 @@ function saveConfig(jsonConfig: string): PlayerConfig {
   return config
 }
 
+function clearConfig() {
+  localStorage.removeItem('config')
+  location.reload();
+}
+
 export default function () {
   const [config, setConfig] = useState(loadConfig())
 
   if (config) {
     return (
       <>
-        <Player config={config} />
+        <Player
+          config={config}
+          clearConfig={clearConfig} />
       </>
     )
   }
@@ -36,13 +43,11 @@ export default function () {
   return (
     <>
       <ConfigLoader onSave={(jsonConfig) => {
-        try
-        {
+        try {
           const newConfig = saveConfig(jsonConfig)
           setConfig(newConfig)
         }
-        catch
-        {
+        catch {
         }
       }} />
     </>

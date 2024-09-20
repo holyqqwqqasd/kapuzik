@@ -6,9 +6,10 @@ import PlaylistDetails from '../containers/PlaylistDetails.tsx'
 
 interface State {
   config: PlayerConfig
+  clearConfig: () => void
 }
 
-export default function ({ config }: State) {
+export default function ({ config, clearConfig }: State) {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // playlist part
@@ -52,6 +53,7 @@ export default function ({ config }: State) {
             <div className="card">
               {playList}
             </div>
+            <button className="delete-config" onClick={clearConfig}>Delete Config</button>
           </div>
           <div className="details">
             {playlistView !== null
