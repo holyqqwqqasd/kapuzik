@@ -44,6 +44,7 @@ export default function ({ config, clearConfig }: State) {
   const onPlay = () => { audioRef.current!.play() }
   const onPause = () => { audioRef.current!.pause() }
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
+  const onVolumeChanged = (x: number) => { audioRef.current!.volume = x }
 
   return (
     <>
@@ -87,6 +88,7 @@ export default function ({ config, clearConfig }: State) {
               onPlay={onPlay}
               onPause={onPause}
               onProgressSeeked={onProgressSeeked}
+              onVolumeChanged={onVolumeChanged}
             />}
         </div>
 

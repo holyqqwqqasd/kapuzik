@@ -14,6 +14,7 @@ interface State {
     onPlay: () => void
     onPause: () => void
     onProgressSeeked: (x: number) => void
+    onVolumeChanged: (x: number) => void
 }
 
 function fromNumberToTime(x: number) {
@@ -35,7 +36,8 @@ export default function ({
     duration,
     onPause,
     onPlay,
-    onProgressSeeked
+    onProgressSeeked,
+    onVolumeChanged
 }: State) {
 
     const middleButton = playing
@@ -75,6 +77,12 @@ export default function ({
                         />
                     </div>
                     <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
+                </div>
+                <div className="audio-volume">
+                    <input type="range" min={0} max={100} defaultValue={100} onChange={e => {
+                        const volume = e.target.valueAsNumber
+                        onVolumeChanged(volume / 100)
+                    }} />
                 </div>
             </div>
         </div>

@@ -29,32 +29,114 @@
 .audio-container .audio-controls {
     padding: 1vh 1vw;
     flex-grow: 1;
+    display: flex;
 }
 
 .audio-container .audio-buttons {
     text-align: center;
+    align-content: center;
 }
 
 .audio-container .audio-progress {
     align-content: center;
     display: flex;
+    flex-grow: 1;
 }
 
 .audio-container .audio-current-time {
     text-align: right;
     padding-right: 10px;
     align-content: center;
-    width: 10vw;
+    width: 6vw;
 }
 
 .audio-container .audio-duration-time {
     text-align: left;
     padding-left: 10px;
     align-content: center;
-    width: 10vw;
+    width: 6vw;
 }
 
 .audio-container .audio-progress-bar {
     flex-grow: 1;
     align-content: center;
 }
+
+.audio-container .audio-volume {
+    align-content: center;
+    width: 10vw;
+}
+
+/* VOLUME STYLES */
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+.audio-container .audio-volume input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Removes default focus */
+.audio-container .audio-volume input[type="range"]:focus {
+    outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+.audio-container .audio-volume input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #555766;
+    border-radius: 1vh;
+    height: 0.5vh;
+}
+
+/* slider thumb */
+.audio-container .audio-volume input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -12px;
+    /* Centers thumb on the track */
+
+    /*custom styles*/
+    background-color: white;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 1vh;
+}
+
+/* .audio-container .audio-volume input[type="range"]:focus::-webkit-slider-thumb {
+    border: 1px solid #053a5f;
+    outline: 3px solid #053a5f;
+    outline-offset: 0.125rem;
+} */
+
+/******** Firefox styles ********/
+/* slider track */
+.audio-container .audio-volume input[type="range"]::-moz-range-track {
+    background-color: #555766;
+    border-radius: 1vh;
+    height: 0.5vh;
+}
+
+/* slider thumb */
+.audio-container .audio-volume input[type="range"]::-moz-range-thumb {
+    border: none;
+    /*Removes extra border that FF applies*/
+    border-radius: 0;
+    /*Removes default border-radius that FF applies*/
+
+    /*custom styles*/
+    background-color: white;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 1vh;
+}
+
+/* .audio-container .audio-volume input[type="range"]:focus::-moz-range-thumb {
+    border: 1px solid #053a5f;
+    outline: 3px solid #053a5f;
+    outline-offset: 0.125rem;
+} */
