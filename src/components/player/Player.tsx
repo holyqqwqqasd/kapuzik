@@ -32,7 +32,7 @@ export default function ({ config, clearConfig }: State) {
       key={x.id}
       config={config}
       playlist={x}
-      playing={playingPlaylist?.id == x.id}
+      playing={playing && playingPlaylist?.id == x.id}
       onSelect={() => {
         if (playlistView?.id == x.id) {
           return
