@@ -3,5 +3,5 @@ interface Track {
     name: string
     artist: string
     url: string
-    cover?: string
+    cover?: string | null
 }

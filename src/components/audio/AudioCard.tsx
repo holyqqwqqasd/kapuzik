@@ -50,7 +50,7 @@ export default function ({
             onClick={onPlay}
         />
 
-    const cover = currentTrack.cover ?? playlist.cover ?? null
+    const cover = currentTrack.cover ?? playlist.cover ?? config.defaultCover ?? null
 
     return (
         <div className="audio-container">

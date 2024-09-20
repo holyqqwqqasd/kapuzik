@@ -1,4 +1,5 @@
 interface PlayerConfig {
-    baseUrl: string,
+    baseUrl: string
+    defaultCover?: string | null
     playlists: Playlist[]
 }

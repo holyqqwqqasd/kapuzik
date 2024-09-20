@@ -34,12 +34,14 @@ export default function ({ config, playlist, state, onPlay, onPause }: State) {
         </div>
     )
 
+    const cover = playlist.cover ?? config.defaultCover ?? null
+
     return (
         <>
             <div className="card">
                 <div className="playlist-details-component">
                     <div className="info">
-                        {playlist.cover ? <img src={config.baseUrl + playlist.cover} /> : null}
+                        {cover ? <img src={config.baseUrl + cover} /> : null}
                         <div className="title">{playlist.name}</div>
                     </div>
                     <div className="tracks">

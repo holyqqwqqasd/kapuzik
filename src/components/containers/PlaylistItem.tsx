@@ -8,11 +8,13 @@ interface State {
 }
 
 export default function ({ config, playlist, playing, onSelect }: State) {
+    const cover = playlist.cover ?? config.defaultCover ?? null
+
     return (
         <div className="playlist-item-component" onClick={onSelect}>
-            {playlist.cover ?
+            {cover ?
                 <div className="image">
-                    <img src={config.baseUrl + playlist.cover} />
+                    <img src={config.baseUrl + cover} />
                 </div>
                 : null}
             <div className="playlist-name">
