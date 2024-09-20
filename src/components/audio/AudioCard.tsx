@@ -64,19 +64,21 @@ export default function ({
                 <div><strong>{currentTrack.artist}</strong></div>
             </div>
             <div className="audio-controls">
-                <div className="audio-buttons">
-                    {middleButton}
-                </div>
-                <div className="audio-progress">
-                    <div className="audio-current-time">{fromNumberToTime(progress)}</div>
-                    <div className="audio-progress-bar">
-                        <ProgressBar
-                            position={progress}
-                            duration={duration}
-                            selected={x => onProgressSeeked(duration * x)}
-                        />
+                <div className="audio-controls-container">
+                    <div className="audio-buttons">
+                        {middleButton}
                     </div>
-                    <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
+                    <div className="audio-progress">
+                        <div className="audio-current-time">{fromNumberToTime(progress)}</div>
+                        <div className="audio-progress-bar">
+                            <ProgressBar
+                                position={progress}
+                                duration={duration}
+                                selected={x => onProgressSeeked(duration * x)}
+                            />
+                        </div>
+                        <div className="audio-duration-time">{fromNumberToTime(duration)}</div>
+                    </div>
                 </div>
                 <div className="audio-volume">
                     <input type="range" min={0} max={100} defaultValue={100} onChange={e => {

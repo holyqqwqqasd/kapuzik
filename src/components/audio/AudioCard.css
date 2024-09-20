@@ -6,6 +6,11 @@
     overflow: hidden;
 }
 
+.audio-container .audio-controls-container {
+    flex-grow: 1;
+    align-content: center;
+}
+
 .audio-container .audio-cover {
     padding: 1vh 1vw;
     display: flex;
@@ -40,7 +45,6 @@
 .audio-container .audio-progress {
     align-content: center;
     display: flex;
-    flex-grow: 1;
 }
 
 .audio-container .audio-current-time {
