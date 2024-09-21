@@ -45,6 +45,37 @@ export default function ({ config, clearConfig }: State) {
   const onPause = () => { audioRef.current!.pause() }
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
   const onVolumeChanged = (x: number) => { audioRef.current!.volume = x }
+  const onPrevious = () => {
+    if (playingPlaylist == null) {
+      return
+    }
+
+    const nextPosition = position - 1
+
+    if (nextPosition >= 0) {
+      setPosition(nextPosition)
+    } else {
+      setPosition(-1)
+      setPlaylist(null)
+    }
+  }
+  const onNext = () => {
+    if (playingPlaylist == null) {
+      return
+    }
+
+    const nextPosition = position + 1
+
+    if (nextPosition < playingPlaylist.tracks.length) {
+      setPosition(nextPosition)
+    } else {
+      setPosition(-1)
+      setPlaylist(null)
+    }
+  }
+
+  navigator.mediaSession.setActionHandler('nexttrack', onNext)
+  navigator.mediaSession.setActionHandler('previoustrack', onPrevious)
 
   return (
     <>
@@ -89,6 +120,8 @@ export default function ({ config, clearConfig }: State) {
               onPause={onPause}
               onProgressSeeked={onProgressSeeked}
               onVolumeChanged={onVolumeChanged}
+              onPrevious={onPrevious}
+              onNext={onNext}
             />}
         </div>
 
@@ -114,19 +147,7 @@ export default function ({ config, clearConfig }: State) {
 
               setDuration(audio.duration)
             }}
-            onEnded={_ => {
-              if (playingPlaylist == null) {
-                return
-              }
-
-              const nextPosition = position + 1
-
-              if (nextPosition < playingPlaylist.tracks.length) {
-                setPosition(nextPosition)
-              } else {
-                setPosition(-1)
-              }
-            }}
+            onEnded={onNext}
             src={config.baseUrl + currentTrack.url}
           />}
       </div>

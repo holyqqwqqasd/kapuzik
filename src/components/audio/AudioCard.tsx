@@ -17,6 +17,8 @@ interface State {
     onPause: () => void
     onProgressSeeked: (x: number) => void
     onVolumeChanged: (x: number) => void
+    onPrevious: () => void
+    onNext: () => void
 }
 
 function fromNumberToTime(x: number) {
@@ -39,7 +41,9 @@ export default function ({
     onPause,
     onPlay,
     onProgressSeeked,
-    onVolumeChanged
+    onVolumeChanged,
+    onPrevious,
+    onNext
 }: State) {
 
     const middleButton = playing
@@ -70,7 +74,8 @@ export default function ({
                     <div className="audio-buttons-arrow">
                         <Previous
                             size="100%"
-                            color="#599a70" />
+                            color="#599a70"
+                            onClick={onPrevious} />
                     </div>
                     <div className="audio-buttons-center">
                         {middleButton}
@@ -78,7 +83,8 @@ export default function ({
                     <div className="audio-buttons-arrow">
                         <Next
                             size="100%"
-                            color="#599a70" />
+                            color="#599a70"
+                            onClick={onNext} />
                     </div>
                 </div>
                 <div className="audio-progress">
