@@ -1,6 +1,6 @@
 interface State {
     color: string
-    size: number
+    size: string
     onClick?: () => void | undefined
 }
 

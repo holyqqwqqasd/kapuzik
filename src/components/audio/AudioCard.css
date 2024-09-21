@@ -6,11 +6,6 @@
     overflow: hidden;
 }
 
-.audio-container .audio-controls-container {
-    flex-grow: 1;
-    align-content: center;
-}
-
 .audio-container .audio-cover {
     padding: 1vh 1vw;
     display: flex;
@@ -27,19 +22,31 @@
 .audio-container .audio-info {
     padding: 1vh 1vw;
     align-content: center;
-    width: 13vw;
-    flex-shrink: 0;
+    flex-grow: 1;
 }
 
 .audio-container .audio-controls {
     padding: 1vh 1vw;
-    flex-grow: 1;
     display: flex;
 }
 
 .audio-container .audio-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+}
+
+.audio-container .audio-buttons .audio-buttons-center {
+    height: 5vh;
+    width: 5vh;
+    flex-grow: 1;
     text-align: center;
-    align-content: center;
+}
+
+.audio-container .audio-buttons .audio-buttons-arrow {
+    height: 3vh;
+    width: 3vh;
 }
 
 .audio-container .audio-progress {
@@ -62,8 +69,8 @@
 }
 
 .audio-container .audio-progress-bar {
-    flex-grow: 1;
     align-content: center;
+    width: 30vw;
 }
 
 .audio-container .audio-volume {
@@ -81,6 +88,7 @@
     background: transparent;
     cursor: pointer;
     width: 100%;
+    height: 1vh;
 }
 
 /* Removes default focus */
