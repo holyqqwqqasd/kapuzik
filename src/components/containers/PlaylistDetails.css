@@ -1,0 +1,43 @@
+.card:has(.playlist-details-component) {
+    background: linear-gradient(180deg, #32a881 0%, black 60%)
+}
+
+.playlist-details-component .info {
+    display: flex;
+    height: 13vh;
+    padding: 3vh;
+}
+
+.playlist-details-component .info img {
+    height: 100%;
+    border-radius: 1vw;
+    box-shadow: 5px 5px 5px #0008;
+    object-fit: cover;
+    width: 13vh;
+}
+
+.playlist-details-component .info .title {
+    flex-grow: 1;
+    align-content: center;
+    padding-left: 3vw;
+    font-size: 3vw;
+}
+
+.playlist-details-component .tracks {
+    background-color: #121212;
+}
+
+.playlist-details-component .tracks .track-item {
+    padding: 1vh 1vw;
+    display: flex;
+}
+
+.playlist-details-component .tracks .track-item.active {
+    background-color: #232323;
+}
+
+.playlist-details-component .tracks .track-item span {
+    align-content: center;
+    flex-grow: 1;
+    padding-left: 1vw;
+}

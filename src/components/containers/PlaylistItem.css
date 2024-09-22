@@ -1,0 +1,28 @@
+.playlist-item-component {
+    padding: 1vh;
+    display: flex;
+    border-radius: 0.5vw;
+    color: #f6f6f6;
+    cursor: pointer;
+}
+
+.playlist-item-component:hover {
+    background-color: #232323;
+}
+
+.playlist-item-component .image {
+    max-width: 5vw;
+}
+
+.playlist-item-component .image img {
+    border-radius: 0.5vw;
+    width: 5vh;
+    height: 5vh;
+    object-fit: cover;
+}
+
+.playlist-item-component .playlist-name {
+    padding-left: 1vw;
+    flex-grow: 1;
+    align-content: center;
+}

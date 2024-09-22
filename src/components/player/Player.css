@@ -1,0 +1,60 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: black;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main-container .content {
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+}
+
+.main-container .content .playlists {
+    padding: 1vh;
+    width: 30vw;
+    flex-shrink: 0;
+}
+
+.main-container .content .playlists .card {
+    background-color: #121212;
+    padding: 1vh;
+    border-radius: 1vh;
+}
+
+.main-container .content .details {
+    padding: 1vh;
+    flex-grow: 1;
+}
+
+.main-container .content .details .card {
+    height: 100%;
+    border-radius: 1vh;
+}
+
+.delete-config {
+    border: 0;
+    padding: 2vh;
+    margin: 1vh 0;
+    color: white;
+    background-color: #121212;
+    box-shadow: none;
+    border-radius: 1vh;
+    width: 100%;
+    cursor: pointer;
+}
+
+.delete-config:hover {
+    background-color: #232323;
+}

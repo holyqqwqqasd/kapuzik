@@ -1,0 +1,154 @@
+.audio-container {
+    display: flex;
+    background-color: #333647;
+    color: whitesmoke;
+    height: 13vh;
+    overflow: hidden;
+}
+
+.audio-container .audio-cover {
+    padding: 1vh 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-container .audio-cover img {
+    width: 10vh;
+    height: 10vh;
+    object-fit: cover;
+}
+
+.audio-container .audio-info {
+    padding: 1vh 1vw;
+    align-content: center;
+    flex-grow: 1;
+}
+
+.audio-container .audio-controls {
+    padding: 1vh 1vw;
+    display: flex;
+}
+
+.audio-container .audio-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+}
+
+.audio-container .audio-buttons .audio-buttons-center {
+    height: 5vh;
+    width: 5vh;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.audio-container .audio-buttons .audio-buttons-arrow {
+    height: 3vh;
+    width: 3vh;
+}
+
+.audio-container .audio-progress {
+    align-content: center;
+    display: flex;
+}
+
+.audio-container .audio-current-time {
+    text-align: right;
+    padding-right: 10px;
+    align-content: center;
+    width: 6vw;
+}
+
+.audio-container .audio-duration-time {
+    text-align: left;
+    padding-left: 10px;
+    align-content: center;
+    width: 6vw;
+}
+
+.audio-container .audio-progress-bar {
+    align-content: center;
+    width: 30vw;
+}
+
+.audio-container .audio-volume {
+    align-content: center;
+    width: 10vw;
+}
+
+/* VOLUME STYLES */
+
+/********** Range Input Styles **********/
+/*Range Reset*/
+.audio-container .audio-volume input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    height: 1vh;
+}
+
+/* Removes default focus */
+.audio-container .audio-volume input[type="range"]:focus {
+    outline: none;
+}
+
+/***** Chrome, Safari, Opera and Edge Chromium styles *****/
+/* slider track */
+.audio-container .audio-volume input[type="range"]::-webkit-slider-runnable-track {
+    background-color: #555766;
+    border-radius: 1vh;
+    height: 0.5vh;
+}
+
+/* slider thumb */
+.audio-container .audio-volume input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    margin-top: -0.5vh;
+    /* Centers thumb on the track */
+
+    /*custom styles*/
+    background-color: white;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 1vh;
+}
+
+/* .audio-container .audio-volume input[type="range"]:focus::-webkit-slider-thumb {
+    border: 1px solid #053a5f;
+    outline: 3px solid #053a5f;
+    outline-offset: 0.125rem;
+} */
+
+/******** Firefox styles ********/
+/* slider track */
+.audio-container .audio-volume input[type="range"]::-moz-range-track {
+    background-color: #555766;
+    border-radius: 1vh;
+    height: 0.5vh;
+}
+
+/* slider thumb */
+.audio-container .audio-volume input[type="range"]::-moz-range-thumb {
+    border: none;
+    /*Removes extra border that FF applies*/
+    border-radius: 0;
+    /*Removes default border-radius that FF applies*/
+
+    /*custom styles*/
+    background-color: white;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 1vh;
+}
+
+/* .audio-container .audio-volume input[type="range"]:focus::-moz-range-thumb {
+    border: 1px solid #053a5f;
+    outline: 3px solid #053a5f;
+    outline-offset: 0.125rem;
+} */
