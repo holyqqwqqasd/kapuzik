@@ -15,7 +15,7 @@
     flex-grow: 1;
     align-content: center;
     padding-left: 3vw;
-    font-size: 3vw;
+    font-size: 1.5rem;
 }
 
 .playlist-details-component .tracks .track-item {
