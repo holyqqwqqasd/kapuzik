@@ -73,12 +73,12 @@ export default function ({
                 <div className="audio-buttons">
                     <Previous
                         size="3vh"
-                        color="#599a70"
+                        color={COLOR_BUTTONS}
                         onClick={onPrevious} />
                     {middleButton}
                     <Next
                         size="3vh"
-                        color="#599a70"
+                        color={COLOR_BUTTONS}
                         onClick={onNext} />
                 </div>
                 <div className="audio-progress">

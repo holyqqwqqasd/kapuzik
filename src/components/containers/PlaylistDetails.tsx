@@ -38,15 +38,13 @@ export default function ({ config, playlist, state, onPlay, onPause }: State) {
 
     return (
         <>
-            <div className="card">
-                <div className="playlist-details-component">
-                    <div className="info">
-                        {cover ? <img src={config.baseUrl + cover} /> : null}
-                        <div className="title">{playlist.name}</div>
-                    </div>
-                    <div className="tracks">
-                        {items}
-                    </div>
+            <div className="playlist-details-component">
+                <div className="info">
+                    {cover ? <img src={config.baseUrl + cover} /> : null}
+                    <div className="title">{playlist.name}</div>
+                </div>
+                <div className="tracks">
+                    {items}
                 </div>
             </div>
         </>

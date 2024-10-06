@@ -108,22 +108,24 @@ export default function ({ config, clearConfig }: State) {
             <button className="delete-config" onClick={clearConfig}>DELETE CONFIG</button>
           </div>
           <div className="details">
-            {playlistView !== null
-              ? <PlaylistDetails
-                config={config}
-                playlist={playlistView}
-                state={openedPlaylistIsPlaying ? { position, playing } : null}
-                onPlay={(newPosition) => {
-                  if (newPosition == position && openedPlaylistIsPlaying) {
-                    onPlay()
-                    return
-                  }
+            <div className="card">
+              {playlistView !== null
+                ? <PlaylistDetails
+                  config={config}
+                  playlist={playlistView}
+                  state={openedPlaylistIsPlaying ? { position, playing } : null}
+                  onPlay={(newPosition) => {
+                    if (newPosition == position && openedPlaylistIsPlaying) {
+                      onPlay()
+                      return
+                    }
 
-                  setPosition(newPosition)
-                  setPlaylist(playlistView)
-                }}
-                onPause={onPause} />
-              : null}
+                    setPosition(newPosition)
+                    setPlaylist(playlistView)
+                  }}
+                  onPause={onPause} />
+                : null}
+            </div>
           </div>
         </div>
         <div className="controls">
