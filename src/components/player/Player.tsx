@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import AudioCard from '../audio/AudioCard.tsx'
 import './Player.css'
 import PlaylistItem from '../containers/PlaylistItem.tsx'
@@ -76,6 +76,14 @@ export default function ({ config, clearConfig }: State) {
 
   navigator.mediaSession.setActionHandler('nexttrack', onNext)
   navigator.mediaSession.setActionHandler('previoustrack', onPrevious)
+
+  useEffect(() => {
+    if (currentTrack) {
+      document.title = `kapuzik | ${currentTrack.name}`
+    } else {
+      document.title = 'kapuzik'
+    }
+  }, [currentTrack?.id])
 
   return (
     <>
