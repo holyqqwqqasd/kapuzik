@@ -17,22 +17,28 @@ interface State {
 }
 
 export default function ({ config, playlist, state, onPlay, onPause }: State) {
-    const items = playlist.tracks.sort((a, b) => a.name > b.name ? 1 : -1).map((x, i) =>
-        <div className={"track-item " + (state && i == state.position ? "active" : "")} key={i}>
-            {state && i == state.position && state.playing
-                ? <Pause
-                    size={35}
-                    color={COLOR_BUTTONS}
-                    onClick={onPause}
-                />
-                : <Play
-                    size={35}
-                    color={COLOR_BUTTONS}
-                    onClick={() => onPlay(i)}
-                />}
-            <span>{x.name}</span>
-        </div>
-    )
+    const items = playlist.tracks.sort((a, b) => a.name > b.name ? 1 : -1).map((x, i) => {
+        const thisPlaying = state && i == state.position && state.playing
+
+        return (
+            <div
+                key={i}
+                className={"track-item " + (state && i == state.position ? "active" : "")}
+                onClick={() => thisPlaying ? onPause() : onPlay(i)}
+            >
+                {thisPlaying
+                    ? <Pause
+                        size={35}
+                        color={COLOR_BUTTONS}
+                    />
+                    : <Play
+                        size={35}
+                        color={COLOR_BUTTONS}
+                    />}
+                <span>{x.name}</span>
+            </div>
+        )
+    })
 
     const cover = playlist.cover ?? config.defaultCover ?? null
 

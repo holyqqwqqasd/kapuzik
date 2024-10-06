@@ -25,8 +25,17 @@
     border-radius: 1vh;
 }
 
-.playlist-details-component .tracks .track-item.active {
+.playlist-details-component .tracks .track-item:hover {
+    display: flex;
+    padding: 1vh;
+    border-radius: 1vh;
     background-color: #232323;
+    cursor: pointer;
+}
+
+.playlist-details-component .tracks .track-item.active {
+    outline: 0.2vh solid #1ed760;
+    color: #1ed760;
 }
 
 .playlist-details-component .tracks .track-item span {

@@ -10,6 +10,11 @@
     background-color: #232323;
 }
 
+.playlist-item-component.active {
+    outline: 0.2vh solid #1ed760;
+    color: #1ed760;
+}
+
 .playlist-item-component .image {
     max-width: 5vw;
 }

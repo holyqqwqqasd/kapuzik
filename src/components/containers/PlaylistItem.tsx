@@ -12,9 +12,9 @@ export default function ({ config, playlist, playing, onSelect }: State) {
 
     return (
         <div
-            className="playlist-item-component"
+            className={"playlist-item-component" + (playing ? " active" : "")}
             onClick={onSelect}
-            style={{ backgroundColor: playing ? "#32a881" : undefined }}>
+        >
             {cover ?
                 <div className="image">
                     <img src={config.baseUrl + cover} />
