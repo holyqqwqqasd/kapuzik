@@ -31,6 +31,10 @@
         margin: 0 auto;
         width: 30vw;
     }
+
+    .audio-container .audio-volume {
+        display: none;
+    }
 }
 
 @media (width > 768px) {

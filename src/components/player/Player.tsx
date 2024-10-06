@@ -76,6 +76,18 @@ export default function ({ config, clearConfig }: State) {
 
   navigator.mediaSession.setActionHandler('nexttrack', onNext)
   navigator.mediaSession.setActionHandler('previoustrack', onPrevious)
+  navigator.mediaSession.setActionHandler('play', () => {
+    if (currentTrack) {
+      navigator.mediaSession.playbackState = 'playing'
+      onPlay()
+    }
+  })
+  navigator.mediaSession.setActionHandler('pause', () => {
+    if (currentTrack) {
+      navigator.mediaSession.playbackState = 'paused'
+      onPause()
+    }
+  })
 
   useEffect(() => {
     if (currentTrack) {
@@ -90,10 +102,11 @@ export default function ({ config, clearConfig }: State) {
             src: config.baseUrl + cover,
           },
         ],
-      });
+      })
     } else {
       document.title = 'kapuzik'
       navigator.mediaSession.metadata = null
+      navigator.mediaSession.playbackState = 'none'
     }
   }, [currentTrack?.id])
 

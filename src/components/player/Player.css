@@ -15,6 +15,12 @@ body {
     height: 100vh;
 }
 
+@supports (-webkit-touch-callout: none) {
+    .main-container {
+        height: -webkit-fill-available;
+    }
+}
+
 .main-container .content {
     flex-grow: 1;
     overflow: hidden auto;
