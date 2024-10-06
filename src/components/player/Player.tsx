@@ -79,9 +79,21 @@ export default function ({ config, clearConfig }: State) {
 
   useEffect(() => {
     if (currentTrack) {
+      const cover = playingPlaylist?.cover ?? config.defaultCover
       document.title = `kapuzik | ${currentTrack.name}`
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentTrack.name,
+        artist: currentTrack.artist,
+        album: playingPlaylist?.name,
+        artwork: [
+          {
+            src: config.baseUrl + cover,
+          },
+        ],
+      });
     } else {
       document.title = 'kapuzik'
+      navigator.mediaSession.metadata = null
     }
   }, [currentTrack?.id])
 
