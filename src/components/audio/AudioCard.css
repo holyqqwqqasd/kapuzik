@@ -22,6 +22,15 @@
     .audio-container .audio-progress-bar {
         flex-grow: 1;
     }
+
+    .audio-container .audio-controls .audio-buttons {
+        margin: 0 auto;
+    }
+
+    .audio-container .audio-volume {
+        margin: 0 auto;
+        width: 30vw;
+    }
 }
 
 @media (width > 768px) {
@@ -47,11 +56,26 @@
     .audio-container .audio-progress-bar {
         width: 30vw;
     }
+
+    .audio-container .audio-controls {
+        display: flex;
+    }
+
+    .audio-container .audio-current-time {
+        width: 6vw;
+    }
+
+    .audio-container .audio-duration-time {
+        width: 6vw;
+    }
+
+    .audio-container .audio-volume {
+        width: 10vw;
+    }
 }
 
 .audio-container .audio-controls {
     padding: 1vh 1vw;
-    display: flex;
 }
 
 .audio-container .audio-buttons {
@@ -76,14 +100,12 @@
     text-align: right;
     padding-right: 10px;
     align-content: center;
-    width: 6vw;
 }
 
 .audio-container .audio-duration-time {
     text-align: left;
     padding-left: 10px;
     align-content: center;
-    width: 6vw;
 }
 
 .audio-container .audio-progress-bar {
@@ -92,7 +114,6 @@
 
 .audio-container .audio-volume {
     align-content: center;
-    width: 10vw;
 }
 
 /* VOLUME STYLES */
