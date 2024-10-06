@@ -23,7 +23,7 @@ export default function ({ config, playlist, state, onPlay, onPause }: State) {
         return (
             <div
                 key={i}
-                className={"track-item " + (state && i == state.position ? "active" : "")}
+                className={"track-item " + (thisPlaying ? "active" : "")}
                 onClick={() => thisPlaying ? onPause() : onPlay(i)}
             >
                 {thisPlaying
