@@ -35,18 +35,11 @@
     align-items: center;
     justify-content: center;
     width: 10vw;
+    min-width: 7rem;
 }
 
-.audio-container .audio-buttons .audio-buttons-center {
-    height: 5vh;
-    width: 5vh;
-    flex-grow: 1;
-    text-align: center;
-}
-
-.audio-container .audio-buttons .audio-buttons-arrow {
-    height: 3vh;
-    width: 3vh;
+.audio-container .audio-buttons * {
+    margin: 5px;
 }
 
 .audio-container .audio-progress {

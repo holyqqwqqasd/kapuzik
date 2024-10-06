@@ -71,21 +71,15 @@ export default function ({
             </div>
             <div className="audio-controls">
                 <div className="audio-buttons">
-                    <div className="audio-buttons-arrow">
-                        <Previous
-                            size="100%"
-                            color="#599a70"
-                            onClick={onPrevious} />
-                    </div>
-                    <div className="audio-buttons-center">
-                        {middleButton}
-                    </div>
-                    <div className="audio-buttons-arrow">
-                        <Next
-                            size="100%"
-                            color="#599a70"
-                            onClick={onNext} />
-                    </div>
+                    <Previous
+                        size="3vh"
+                        color="#599a70"
+                        onClick={onPrevious} />
+                    {middleButton}
+                    <Next
+                        size="3vh"
+                        color="#599a70"
+                        onClick={onNext} />
                 </div>
                 <div className="audio-progress">
                     <div className="audio-current-time">{fromNumberToTime(progress)}</div>
