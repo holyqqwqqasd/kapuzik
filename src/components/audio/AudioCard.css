@@ -137,7 +137,7 @@
 /***** Chrome, Safari, Opera and Edge Chromium styles *****/
 /* slider track */
 .audio-container .audio-volume input[type="range"]::-webkit-slider-runnable-track {
-    background-color: #555766;
+    background-color: #666;
     border-radius: 1vh;
     height: 0.5vh;
 }
@@ -166,7 +166,7 @@
 /******** Firefox styles ********/
 /* slider track */
 .audio-container .audio-volume input[type="range"]::-moz-range-track {
-    background-color: #555766;
+    background-color: #666;
     border-radius: 1vh;
     height: 0.5vh;
 }
