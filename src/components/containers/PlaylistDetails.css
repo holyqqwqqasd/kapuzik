@@ -2,6 +2,8 @@
     display: flex;
     height: 13vh;
     padding: 2vh;
+    background-color: #232323;
+    border-radius: 1vh;
 }
 
 .playlist-details-component .info img {
@@ -18,11 +20,16 @@
     font-size: 1.5rem;
 }
 
+.playlist-details-component .tracks {
+    padding-top: 1rem;
+}
+
 .playlist-details-component .tracks .track-item {
     display: flex;
     padding: 1vh;
     border-radius: 1vh;
     user-select: none;
+    cursor: pointer;
 }
 
 .playlist-details-component .tracks .track-item:hover {
@@ -30,7 +37,6 @@
     padding: 1vh;
     border-radius: 1vh;
     background-color: #232323;
-    cursor: pointer;
 }
 
 .playlist-details-component .tracks .track-item.active {

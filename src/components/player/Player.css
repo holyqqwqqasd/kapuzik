@@ -17,14 +17,12 @@ body {
 
 .main-container .content {
     flex-grow: 1;
-    overflow: auto;
+    overflow: hidden auto;
     display: flex;
 }
 
 .main-container .content .playlists {
     padding: 1vh;
-    width: 30vw;
-    flex-shrink: 0;
 }
 
 .main-container .content .playlists .card {
@@ -58,4 +56,17 @@ body {
 
 .delete-config:hover {
     background-color: #232323;
+}
+
+@media (width <=768px) {
+    .main-container .content .playlists {
+        width: 9vh;
+    }
+}
+
+@media (width > 768px) {
+    .main-container .content .playlists {
+        width: 30vw;
+        flex-shrink: 0;
+    }
 }
