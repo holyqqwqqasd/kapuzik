@@ -6,23 +6,47 @@
     overflow: hidden;
 }
 
-.audio-container .audio-cover {
-    padding: 1vh 1vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@media (width <=768px) {
+    .audio-container .audio-cover {
+        display: none;
+    }
+
+    .audio-container .audio-info {
+        display: none;
+    }
+
+    .audio-container .audio-controls {
+        flex-grow: 1;
+    }
+
+    .audio-container .audio-progress-bar {
+        flex-grow: 1;
+    }
 }
 
-.audio-container .audio-cover img {
-    width: 10vh;
-    height: 10vh;
-    object-fit: cover;
-}
+@media (width > 768px) {
+    .audio-container .audio-cover {
+        padding: 1vh 1vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.audio-container .audio-info {
-    padding: 1vh 1vw;
-    align-content: center;
-    flex-grow: 1;
+    .audio-container .audio-cover img {
+        width: 10vh;
+        height: 10vh;
+        object-fit: cover;
+    }
+
+    .audio-container .audio-info {
+        padding: 1vh 1vw;
+        align-content: center;
+        flex-grow: 1;
+    }
+
+    .audio-container .audio-progress-bar {
+        width: 30vw;
+    }
 }
 
 .audio-container .audio-controls {
@@ -45,6 +69,7 @@
 .audio-container .audio-progress {
     align-content: center;
     display: flex;
+    flex-grow: 1;
 }
 
 .audio-container .audio-current-time {
@@ -63,7 +88,6 @@
 
 .audio-container .audio-progress-bar {
     align-content: center;
-    width: 30vw;
 }
 
 .audio-container .audio-volume {
