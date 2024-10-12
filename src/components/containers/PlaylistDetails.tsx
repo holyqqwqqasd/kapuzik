@@ -18,15 +18,16 @@ interface State {
 
 export default function ({ config, playlist, state, onPlay, onPause }: State) {
     const items = playlist.tracks.sort((a, b) => a.name > b.name ? 1 : -1).map((x, i) => {
-        const thisPlaying = state && i == state.position && state.playing
+        const active = state && i == state.position
+        const playing = active && state.playing
 
         return (
             <div
                 key={i}
-                className={"track-item " + (thisPlaying ? "active" : "")}
-                onClick={() => thisPlaying ? onPause() : onPlay(i)}
+                className={"track-item " + (active ? "active" : "")}
+                onClick={() => playing ? onPause() : onPlay(i)}
             >
-                {thisPlaying
+                {playing
                     ? <Pause
                         size={35}
                         color={COLOR_BUTTONS}

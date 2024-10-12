@@ -13,14 +13,14 @@ export default function ({ config, clearConfig }: State) {
   const audioRef = useRef<HTMLAudioElement>(null)
 
   // playlist part
-  const [playlistView, setPlaylistView] = useState<Playlist | null>(null)
+  const [openedPlaylist, setOpenedPlaylist] = useState<Playlist | null>(null)
   const [playingPlaylist, setPlaylist] = useState<Playlist | null>(null)
   const [position, setPosition] = useState(-1)
-  const currentTrack = position >= 0 && playingPlaylist !== null
+  const currentTrack = position >= 0 && playingPlaylist
     ? playingPlaylist.tracks[position]
     : null
   const openedPlaylistIsPlaying =
-    playlistView && playingPlaylist && playlistView.id == playingPlaylist.id
+    openedPlaylist && playingPlaylist && openedPlaylist.id == playingPlaylist.id
 
   // audio card part
   const [progress, setProgress] = useState(0)
@@ -32,13 +32,13 @@ export default function ({ config, clearConfig }: State) {
       key={x.id}
       config={config}
       playlist={x}
-      playing={playing && playingPlaylist?.id == x.id}
+      playing={playingPlaylist?.id == x.id}
       onSelect={() => {
-        if (playlistView?.id == x.id) {
+        if (openedPlaylist?.id == x.id) {
           return
         }
 
-        setPlaylistView(x)
+        setOpenedPlaylist(x)
       }} />
   )
   const onPlay = () => { audioRef.current!.play() }
@@ -46,7 +46,7 @@ export default function ({ config, clearConfig }: State) {
   const onProgressSeeked = (x: number) => { audioRef.current!.currentTime = x }
   const onVolumeChanged = (x: number) => { audioRef.current!.volume = x }
   const onPrevious = () => {
-    if (playingPlaylist == null) {
+    if (!playingPlaylist) {
       return
     }
 
@@ -60,7 +60,7 @@ export default function ({ config, clearConfig }: State) {
     }
   }
   const onNext = () => {
-    if (playingPlaylist == null) {
+    if (!playingPlaylist) {
       return
     }
 
@@ -122,10 +122,10 @@ export default function ({ config, clearConfig }: State) {
           </div>
           <div className="details">
             <div className="card">
-              {playlistView !== null
+              {openedPlaylist
                 ? <PlaylistDetails
                   config={config}
-                  playlist={playlistView}
+                  playlist={openedPlaylist}
                   state={openedPlaylistIsPlaying ? { position, playing } : null}
                   onPlay={(newPosition) => {
                     if (newPosition == position && openedPlaylistIsPlaying) {
@@ -134,7 +134,7 @@ export default function ({ config, clearConfig }: State) {
                     }
 
                     setPosition(newPosition)
-                    setPlaylist(playlistView)
+                    setPlaylist(openedPlaylist)
                   }}
                   onPause={onPause} />
                 : null}
@@ -142,9 +142,8 @@ export default function ({ config, clearConfig }: State) {
           </div>
         </div>
         <div className="controls">
-          {currentTrack == null
-            ? null
-            : <AudioCard
+          {currentTrack
+            ? <AudioCard
               config={config}
               currentTrack={currentTrack}
               playlist={playingPlaylist!}
@@ -157,12 +156,12 @@ export default function ({ config, clearConfig }: State) {
               onVolumeChanged={onVolumeChanged}
               onPrevious={onPrevious}
               onNext={onNext}
-            />}
+            />
+            : null}
         </div>
 
-        {currentTrack == null
-          ? null
-          : <audio
+        {currentTrack
+          ? <audio
             ref={audioRef}
             autoPlay={true}
             onTimeUpdate={e => {
@@ -184,7 +183,8 @@ export default function ({ config, clearConfig }: State) {
             }}
             onEnded={onNext}
             src={config.baseUrl + currentTrack.url}
-          />}
+          />
+          : null}
       </div>
     </>
   )
